@@ -43,7 +43,7 @@ function adminStory() {
 				  . '</script>' . PHP_EOL;
 		addJSToBody($selector,'inline');
 	}
-	$assochecklist = '<script type="text/javascript">$(\'#selectall\').click(function() {$(\'input[type="checkbox"]\').attr(\'checked\', $(\'#selectall\').is(\'":checked\'));})</script>' . PHP_EOL;
+	$assochecklist = '<script type="text/javascript">$(\'#selectall\').click(function() {$("input[type=\'checkbox\']").prop(\'checked\', $(\'#selectall\').is(\':checked\'));})</script>' . PHP_EOL;
 	addJSToBody($assochecklist,'inline');
 	if ((isset($advanced_editor) || $advanced_editor == 1) && $TON_useCharLimit == 1) {
 		$ckmaxchars = $TON_CharLimit;
@@ -112,7 +112,7 @@ function adminStory() {
 	if ($hideautosubmit == 0 || defined('ADMIN_FILE')) {
 		$year_range_min = $newsyearmin;
 		$year_range_max = $newsyearmax;
-		$yearcheck = '';
+		$yearcheck = array();
 		if ($year_range_min == '0' || $year_range_max == '0') {
 			$timecheck = $db->sql_query('SELECT `time` FROM `' . $prefix . '_stories` WHERE `sid`');
 			while ($time_check = $db->sql_fetchrow($timecheck)) {
@@ -500,7 +500,7 @@ function previewAdminStory($automated, $automated2, $year, $day, $month, $hour, 
 		}
 		$year_range_min = $newsyearmin;
 		$year_range_max = $newsyearmax;
-		$yearcheck = '';
+		$yearcheck = array();
 		if ($year_range_min == '0' || $year_range_max == '0') {
 			$timecheck = $db->sql_query('SELECT `time` FROM `' . $prefix . '_stories` WHERE `sid`');
 			while ($time_check = $db->sql_fetchrow($timecheck)) {
@@ -808,6 +808,10 @@ CloseTable();
 
 function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $min, $subject, $hometext, $bodytext, $tags, $topic, $catid, $ihome, $alanguage, $acomm, $pollTitle, $optionText, $assotop, $yearselect, $monthselect, $dayselect, $hourselect, $minselect, $secselect, $yearexpire, $monthexpire, $dayexpire, $hourexpire, $minexpire, $slock) {
 	global $aid, $db, $prefix, $admin_file, $nuke_config, $user, $anonymous, $modGFXChk, $AllowableHTML, $module_name;
+	# php7 fix
+	if ($topic == '' || !is_numeric($topic)) {
+		$topic = 1;
+	}
 	if ($subject == '') {
 		include_once 'header.php';
 		OpenTable();
@@ -862,7 +866,7 @@ function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $mi
 	$now = date('Y-m-d H:i:s');
 	$today = date('Y-m-d H:i:00');
 	$postingtime = $year . '-' . $month . '-' . $day . ' ' . $hour . ':' . $min . ':00';
-	$expiretime = $yearexpire . '-' . $monthexpire . '-' . $dayexpire . ' ' . $hourexpire . ':' . $minexpire . ':00';	
+	$expiretime = $yearexpire . '-' . $monthexpire . '-' . $dayexpire . ' ' . $hourexpire . ':' . $minexpire . ':00';
 	$time2 = $yearselect . '-' . $monthselect . '-' . $dayselect . ' ' . $hourselect . ':' . $minselect . ':' . $secselect;
 	if ($postingtime >= $today && $slock == 1 && $automated == 1) {
 		$timecheck = 1;	
@@ -876,10 +880,10 @@ function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $mi
 	} else {
 		$timecheck = 0;
 	}
-	if ($automated2 == 1 && $expiretime >= $now) {	
+	if ($automated2 == 1 && $expiretime >= $now) {
 		$expireheck = 1;
 	} elseif ($automated2 == 1 && $expiretime <= $now) {
-		$expireheck = 0;	
+		$expireheck = 0;
 	} else {
 		$expiretime = '';
 		$expireheck = 1;
@@ -897,8 +901,9 @@ function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $mi
 	if ($expireheck == 1) {
 		$time3 = $db->sql_escape_string($expiretime);
 	} else {
-		$time3 = '0';
+		$time3 = '';
 	}
+
 	if (($pollTitle != '') AND ($optionText[1] != '') AND ($optionText[2] != '')) {
 		$haspoll = 1;
 		$timeStamp = time();
@@ -921,7 +926,16 @@ function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $mi
 		$haspoll = 0;
 		$id = 0;
 	}
-	$result = $db->sql_query('INSERT INTO `' . $prefix . '_stories` '."VALUES (NULL, '$catid', '$aid', '$subject', '$time', '$hometext', '$bodytext', 0, 0, '$topic', '$informant', '', '$ihome', '$alanguage', '$acomm', '$haspoll', '$id', 0, 0, '$associated', '$time2', '$time3', '$slock')");
+	$sql = 'INSERT INTO `' . $prefix . '_stories` VALUES(NULL, \'' . $catid . '\', \'' . $aid . '\', \'' . $subject . '\', \'' . $time . '\', \'' . $hometext . '\', \'' . $bodytext . '\', 0, 0, \'' . $topic . '\', \'' . $informant . '\', \'\', \'' . $ihome . '\', \'' . $alanguage . '\',
+	\'' . $acomm . '\', \'' . $haspoll . '\', \'' . $id . '\', 0, 0, \'' . $associated . '\', \'' . $time2 . '\', ';
+	# php7 fix
+	if ($time3 != '') {
+		$sql .= '\'' . $time3  . '\'';
+	} else {
+		$sql .= 'NULL';
+	}
+	$sql .= ', \'' . $slock . '\')';
+	$result = $db->sql_query($sql);
 	if ($tags!='') { // tag cloud start
 		$row = $db->sql_fetchrow($db->sql_query('SELECT `sid` FROM `' . $prefix . '_stories` ORDER BY `sid` DESC LIMIT 1'));
 		$lastid = intval($row['sid']);
@@ -934,10 +948,13 @@ function postAdminStory($automated, $automated2, $year, $day, $month, $hour, $mi
 	if (defined('ADMIN_FILE')) {
 		$result = $db->sql_query('SELECT `sid` FROM `' . $prefix . '_stories` WHERE `title` = \'' . $subject . '\' ORDER BY `time` DESC LIMIT 0,1');
 		list($artid) = $db->sql_fetchrow($result);
-		$db->sql_query('UPDATE `' . $prefix . '_poll_desc` SET `artid` = ' . $artid . ' WHERE `pollID` = \'' . $id . '\'');
+		if ($id > 0) {
+			$db->sql_query('UPDATE `' . $prefix . '_poll_desc` SET `artid` = ' . $artid . ' WHERE `pollID` = \'' . $id . '\'');
+		}
 		if (!$result) {
 			exit();
 		}
+		
 		$result = $db->sql_query('UPDATE `' . $prefix . '_authors` SET `counter` = `counter` + 1 WHERE `aid` = \'' . $aid . '\'');
 		Header('Location: ' . $admin_file . '.php?op=newsarchive' . ($topic > 0 ? '&topicsel=' . $topic : '')); exit;
 	} else {

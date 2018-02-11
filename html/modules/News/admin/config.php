@@ -535,12 +535,12 @@ function tonSave($newsrows, $bookmark, $rblocks, $linklocation, $articlelink, $a
 		$cTON_CharLimit = $TON_CharLimit;
 	}
 	if (!is_numeric($topad) || $topad <= 0) {
-		 $ctopad = '';
+		 $ctopad = 0;
 	} else {
 		$ctopad = $topad;
 	}
 	if (!is_numeric($bottomad) || $bottomad <= 0) {
-		 $cbottomad = '';
+		 $cbottomad = 0;
 	} else {
 		$cbottomad = $bottomad;
 	}	
@@ -555,18 +555,18 @@ function tonSave($newsrows, $bookmark, $rblocks, $linklocation, $articlelink, $a
 		$googlapi = $db->sql_escape_string(htmlspecialchars_decode(check_html($googlapi, 'nohtml'), ENT_QUOTES));
 	}
 	if (!is_numeric($archivedefault) || $archivedefault <= 0) {
-		$carchivedefault = '';
+		$carchivedefault = 0;
 	} else {
 		$carchivedefault = $archivedefault;
 	}
 	if (!is_numeric($counttopic) || $counttopic <= 0) {
-		 $counttopic = '';
+		 $counttopic = 0;
 	}
 	if (!is_numeric($counttitle) || $counttitle <= 0) {
-		 $counttitle = '';
+		 $counttitle = 0;
 	}
 	if (!is_numeric($usenotes) || $usenotes <= 0) {
-		 $usenotes = '';
+		 $usenotes = 0;
 	}
 	$db->sql_query('UPDATE `' . $prefix . '_ton` SET '."`newsrows`='$newsrows', `bookmark`='$bookmark', `rblocks`='$rblocks', `linklocation`='$linklocation', `articlelink`='$articlelink', `artview`='$artview', `TON_useTitleLink`='$TON_useTitleLink', `TON_usePDF`='$TON_usePDF', `TON_useRating`='$TON_useRating', `TON_useSendToFriend`='$TON_useSendToFriend', `showtags`='$showtags', `TON_useCharLimit`='$TON_useCharLimit', `TON_CharLimit`='$cTON_CharLimit', `topadact`='$topadact', `topad`='$ctopad', `bottomadact`='$bottomadact', `bottomad`='$cbottomad', `usedisqus`='$usedisqus', `shortname`='$shortname', `googlapi`='$googlapi', `usegooglsb`='$usegooglsb', `usegooglart`='$usegooglart', `newssort`='$newssort', `newsorder`='$newsorder', `newsyearmin`='$newsyearmin', `newsyearmax`='$newsyearmax', `hideautotimes`='$hideautotimes', `previewstory`='$previewstory', `hideautosubmit`='$hideautosubmit', `archivedefault`='$carchivedefault', `archivetopics`='$archivetopics', `jqueryselect`='$jqueryselect', `archive_charlimit`='$archive_charlimit', `counttopic`='$counttopic', `counttitle`='$counttitle', `usenotes`='$usenotes'".'');
 	 Header('Location: ' . $admin_file . '.php?op=newsedit');

@@ -59,45 +59,45 @@ function PrintPage($sidnum) {
 	$row2 = $db->sql_fetchrow($db->sql_query('SELECT `topictext` FROM `' . $prefix . '_topics` WHERE `topicid` = \'' . $topic . '\''));
 	$topictext = htmlspecialchars($row2['topictext'], ENT_QUOTES, _CHARSET);
 	formatTimestamp($time);
-	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"' , PHP_EOL , ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' , PHP_EOL
-	   , '<html xmlns="http://www.w3.org/1999/xhtml">' , PHP_EOL
-	   , '<head>' , PHP_EOL
-	   , '	<title>' , $sitename , ' - ' , $title , '</title>' , PHP_EOL
-	   , '</head>' , PHP_EOL
-	   , '<body style="color:#000; background:#fff;">' , PHP_EOL
-	   , '	<div style="margin:0 auto; border:1px solid #000; width:640px; padding:10px;">' , PHP_EOL
-	   , '	<div style="text-align:center;">' , PHP_EOL
-	   , '		<img src="' , $avantgo_logo , '" border="0" alt="" />' , PHP_EOL
-	   , '		<br /><br />' , PHP_EOL
-	   , '		<span class="content" style="font-weight:bold;">' , $title , '</span><br />' , PHP_EOL
-	   , '		<span class="tiny">' , PHP_EOL
-	   , '			<span style="font-weight:bold;">' , _PDATE , '</span> ' , $datetime , PHP_EOL
-	   , '			<br />' , PHP_EOL;
+	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"', PHP_EOL, ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">', PHP_EOL
+		,'<html xmlns="http://www.w3.org/1999/xhtml">', PHP_EOL
+		,'<head>', PHP_EOL
+		,'	<title>', $sitename, ' - ', $title, '</title>', PHP_EOL
+		,'</head>', PHP_EOL
+		,'<body style="color:#000; background:#fff;">', PHP_EOL
+		,'	<div style="margin:0 auto; border:1px solid #000; width:640px; padding:10px;">', PHP_EOL
+		,'	<div style="text-align:center;">', PHP_EOL
+		,'		<img src="', $avantgo_logo, '" border="0" alt="" />', PHP_EOL
+		,'		<br /><br />' , PHP_EOL
+		,'		<span class="content" style="font-weight:bold;">', $title, '</span><br />', PHP_EOL
+		,'		<span class="tiny">' , PHP_EOL
+		,'			<span style="font-weight:bold;">', _PDATE, '</span> ', $datetime, PHP_EOL
+		,'			<br />', PHP_EOL;
 	if ($topictext != '') {
-	echo '			<span style="font-weight:bold;">' , _PTOPIC , '</span> ' , $topictext , PHP_EOL;
+	echo '			<span style="font-weight:bold;">', _PTOPIC, '</span> ', $topictext, PHP_EOL;
 	}
-	echo '		</span>' , PHP_EOL
-	   , '		<br /><br />' , PHP_EOL
-	   , '	</div>' , PHP_EOL
-	   , '	<div class="content">' , PHP_EOL
-	   , '		' , $hometext , '<br /><br />' , PHP_EOL;
+	echo '		</span>', PHP_EOL
+		,'		<br /><br />', PHP_EOL
+		,'	</div>', PHP_EOL
+		,'	<div class="content">', PHP_EOL
+		,'		', $hometext, '<br /><br />', PHP_EOL;
 	if ($bodytext != '') {
-	echo '		' , $bodytext , '<br /><br />' , PHP_EOL;
+	echo '		', $bodytext, '<br /><br />', PHP_EOL;
 	}
 	if ($notes != '') {
-	echo '		' , $notes , '<br /><br />' , PHP_EOL;
+	echo '		', $notes, '<br /><br />', PHP_EOL;
 	}
 	echo '	</div>' , PHP_EOL
-	   , '	<div style="text-align:center; margin:0 auto; width:100%;">' , PHP_EOL
-	   , '		<span class="content">' , PHP_EOL
-	   , '			' , _COMESFROM , ' ' , $sitename , '<br />' , PHP_EOL
-	   , '			<a href="' , $nukeurl , '">' , $nukeurl , '</a><br /><br />' , PHP_EOL
-	   , '			' , _THEURL , '<br />' , PHP_EOL
-	   , '			<a href="' , $nukeurl , '/modules.php?name=News&amp;file=article&amp;sid=' , $sid , '">' , $nukeurl , '/modules.php?name=News&amp;file=article&amp;sid=' , $sid , '</a>' , PHP_EOL
-	   , '		</span>' , PHP_EOL
-	   , '	</div>' , PHP_EOL
-	   , '</div>' , PHP_EOL
-	   , '</body>' , PHP_EOL
-	   , '</html>' , PHP_EOL;
+		,'	<div style="text-align:center; margin:0 auto; width:100%;">', PHP_EOL
+		,'		<span class="content">', PHP_EOL
+		,'			', _COMESFROM, ' ', $sitename, '<br />', PHP_EOL
+		,'			<a href="', $nukeurl, '">', $nukeurl, '</a><br /><br />', PHP_EOL
+		,'			', _THEURL, '<br />' , PHP_EOL
+		,'			<a href="', $nukeurl, '/modules.php?name=News&amp;file=article&amp;sid=', $sid, '">', $nukeurl, '/modules.php?name=News&amp;file=article&amp;sid=' , $sid , '</a>', PHP_EOL
+		,'		</span>', PHP_EOL
+		,'	</div>', PHP_EOL
+		,'</div>', PHP_EOL
+		,'</body>', PHP_EOL
+		,'</html>', PHP_EOL;
 }
 PrintPage($sid);

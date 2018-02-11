@@ -17,7 +17,6 @@
 ######################################################################
 
 if (!defined('MODULE_FILE')){die('You can\'t access this file directly...');}
-if (!defined('PHP_EOL')) define ('PHP_EOL', strtoupper(substr(PHP_OS,0,3) == 'WIN') ? "\r\n" : "\n");
 $module_name = basename(dirname(__FILE__));
 get_lang($module_name);
 global $sitename, $slogan, $db, $prefix, $module_name, $site_logo, $Default_Theme;
@@ -31,40 +30,40 @@ $avantgo_logo = 'images/logo.gif';
 $avantgo_logo = '';
 }
 Header('Content-Type: text/html');
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"' , PHP_EOL , ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' , PHP_EOL
-   , '<html xmlns="http://www.w3.org/1999/xhtml">' , PHP_EOL
-   , '<head>' , PHP_EOL
-   , '<title>', $sitename , ' - AvantGo</title>' , PHP_EOL
-   , '<meta name="HandheldFriendly" content="True" />' , PHP_EOL
-   , '</head>' , PHP_EOL
-   , '<body>',"\n\n\n"
-   , '<div align="center">' , PHP_EOL;
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitinal//EN"', PHP_EOL, ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">', PHP_EOL
+	,'<html xmlns="http://www.w3.org/1999/xhtml">', PHP_EOL
+	,'<head>', PHP_EOL
+	,'<title>', $sitename , ' - AvantGo</title>', PHP_EOL
+	,'<meta name="HandheldFriendly" content="True" />', PHP_EOL
+	,'</head>', PHP_EOL
+	,'<body>', PHP_EOL
+	,'<div align="center">', PHP_EOL;
 $result = $db->sql_query('SELECT `sid`, `title`, `time` FROM `' . $prefix . '_stories` WHERE `slock` = 0 ORDER BY `sid` DESC LIMIT 10');
 if (!$result) {
-    echo 'An error occured';
+	echo 'An error occured';
 } else {
-    echo '<a href="index.php"><img src="', $avantgo_logo , '" alt="' , $slogan , '" title="' , $slogan , '" border="0" /></a><br />' , PHP_EOL
-       , '<h1>' , $sitename , '</h1>' , PHP_EOL
-       , '<table border="0" align="center">' , PHP_EOL
-       , '	<tr>' , PHP_EOL
-       , '		<td bgcolor="#efefef">' , _TITLE , '</td>' , PHP_EOL
-       , '		<td bgcolor="#efefef">' , _DATE , '</td>' , PHP_EOL
-       , '	</tr>' , PHP_EOL;
-    for ($m=0; $m < $db->sql_numrows($result); $m++) {
-        $row = $db->sql_fetchrow($result);
+	echo '<a href="index.php"><img src="', $avantgo_logo, '" alt="', $slogan, '" title="', $slogan, '" border="0" /></a><br />', PHP_EOL
+		,'<h1>' , $sitename , '</h1>' , PHP_EOL
+		,'<table border="0" align="center">' , PHP_EOL
+		,'	<tr>', PHP_EOL
+		,'		<td bgcolor="#efefef">', _TITLE, '</td>', PHP_EOL
+		,'		<td bgcolor="#efefef">', _DATE, '</td>', PHP_EOL
+		,'	</tr>' , PHP_EOL;
+	for ($m=0; $m < $db->sql_numrows($result); $m++) {
+		$row = $db->sql_fetchrow($result);
 		$sid = intval($row['sid']);
 		$title = stripslashes(check_html($row['title'], 'nohtml'));
 		$time = $row['time'];
-    	echo '	<tr>' , PHP_EOL
-	       , '		<td><a href="modules.php?name=', $module_name ,'&amp;file=print&amp;sid=', $sid ,'">' , $title , '</a></td>' , PHP_EOL
-           , '		<td>' , $time , '</td>' , PHP_EOL
-           , '	</tr>' , PHP_EOL;
-    }
-    echo '</table>' , PHP_EOL;
-    echo '<br /><br />' , _GOBACK , '<br />' , PHP_EOL;
+		echo '	<tr>', PHP_EOL
+			,'		<td><a href="modules.php?name=', $module_name, '&amp;file=print&amp;sid=', $sid, '">', $title, '</a></td>', PHP_EOL
+			,'		<td>', $time, '</td>', PHP_EOL
+			,'	</tr>', PHP_EOL;
+	}
+	echo '</table>', PHP_EOL
+		,'<br /><br />', _GOBACK, '<br />', PHP_EOL;
 }
-echo '</div>' , PHP_EOL
-   , '</body>' , PHP_EOL
-   , '</html>' , PHP_EOL;
+echo '</div>', PHP_EOL
+	,'</body>', PHP_EOL
+	,'</html>', PHP_EOL;
 include_once('includes/counter.php');
 die();

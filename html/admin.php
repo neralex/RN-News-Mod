@@ -4,7 +4,7 @@
  * @package RavenNuke 2.5
  * @subpackage Core
  * @version $Id$
- * @copyright (c) 2011 Raven Web Services, LLC
+ * @copyright (c) 2013 Raven Web Services, LLC
  * @link http://www.ravennuke.com
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -12,6 +12,7 @@
  * Copyright (c) 2002 by Francisco Burzi
  * http://phpnuke.org
  *
+ * modified for Newsmod 106 by neralex
 */
 
 define('ADMIN_FILE', true);
@@ -144,20 +145,20 @@ function login() {
 	global $admin_file;
 	include_once 'header.php';
 	OpenTable();
-	echo '<div class="text-center title thick">' , _ADMINLOGIN , '</div>';
+	echo '<div class="text-center title thick">', _ADMINLOGIN, '</div>';
 	CloseTable();
 	OpenTable();
-	echo '<form action="' , $admin_file , '.php" method="post">'
-		, '<table style="border-style: none;">'
-		, '<tr><td><label for="aid">' , _ADMINID , ':</label></td>'
-		, '<td><input type="text" id="aid" name="aid" size="20" maxlength="25" /></td></tr>'
-		, '<tr><td><label for="pwd">' , _PASSWORD , ':</label></td>'
-		, '<td><input type="password" id="pwd" name="pwd" size="20" maxlength="40" /></td></tr>'
-		, security_code(array(1,5,6,7), 'normal')
-		, '<tr><td><input type="hidden" name="op" value="login" />'
-		, '<input class="button1" type="submit" value="' , _LOGIN , '" />'
-		, '</td></tr></table>'
-		, '</form>';
+	echo '<form action="', $admin_file, '.php" method="post">'
+		,'<table style="border-style: none;">'
+		,'<tr><td><label for="aid">', _ADMINID, ':</label></td>'
+		,'<td><input type="text" id="aid" name="aid" size="20" maxlength="25" /></td></tr>'
+		,'<tr><td><label for="pwd">', _PASSWORD, ':</label></td>'
+		,'<td><input type="password" id="pwd" name="pwd" size="20" maxlength="40" /></td></tr>'
+		,security_code(array(1,5,6,7), 'normal')
+		,'<tr><td><input type="hidden" name="op" value="login" />'
+		,'<input class="button1" type="submit" value="', _LOGIN, '" />'
+		,'</td></tr></table>'
+		,'</form>';
 	CloseTable();
 	include_once 'footer.php';
 }
@@ -186,8 +187,8 @@ function adminmenu($url, $title, $image) {
 		$img = '';
 		$close = '</a>';
 	}
-	echo '<td class="text-center content" style="width: 16%; vertical-align: top;"><a href="' , $url , '">' , $img
-		, '<span class="thick">' , $title , '</span>' , $close , '<br /><br /></td>';
+	echo '<td class="text-center content" style="width: 16%; vertical-align: top;"><a href="', $url, '">', $img
+		, '<span class="thick">', $title, '</span>', $close, '<br /><br /></td>';
 	if ($counter == 5) {
 		echo '</tr><tr>';
 		$counter = 0;
@@ -214,7 +215,7 @@ function GraphicAdmin() {
 	$radminsuper = is_mod_admin('admin');
 	if (is_mod_admin('admin') && ($usenukeNAV == 0 || ($usenukeNAV > 0 && $showAdminMenu))) {
 		OpenTable();
-		echo '<div class="text-center title"><a href="' , $admin_file , '.php">' , _ADMINMENU , '</a>'
+		echo '<div class="text-center title"><a href="', $admin_file, '.php">', _ADMINMENU, '</a>'
 			, '<br /><br /></div>';
 		if (empty($op) || ($op == 'adminMain')) {
 			echo '<table style="border-style: none; width: 100%;"><tr>';
@@ -243,7 +244,7 @@ function GraphicAdmin() {
 	}
 	if (empty($op) or ($op == 'adminMain')) {
 		OpenTable();
-		echo '<div class="text-center title"><a href="' , $admin_file , '.php">' , _MODULESADMIN , '</a>'
+		echo '<div class="text-center title"><a href="', $admin_file, '.php">', _MODULESADMIN, '</a>'
 			, '<br /><br /></div>'
 			, '<table style="border-style: none; width: 100%;"><tr>';
 		$result = $db->sql_query('SELECT `title` FROM `' . $prefix . '_modules` ORDER BY `title` ASC');
@@ -284,7 +285,7 @@ function adminMain() {
 		}
 	}
 	$ThemeSel = get_theme(true);
-	include_once 'header.php';	
+	include_once 'header.php';
 	GraphicAdmin();
 	$aid = is_admin($admin);
 	list($admlanguage) = $db->sql_fetchrow($db->sql_query('SELECT `admlanguage` FROM `' . $prefix . '_authors` WHERE `aid`=\'' . addslashes($aid) . '\''), SQL_NUM);
@@ -297,17 +298,15 @@ function adminMain() {
 	}
 	list($main_module) = $db->sql_fetchrow($db->sql_query('SELECT `main_module` FROM `' . $prefix . '_main`'));
 	OpenTable();
-	echo '<div class="text-center"><span class="thick">' , htmlspecialchars($nuke_config['sitename'], ENT_QUOTES, _CHARSET) , '.: ' , _DEFHOMEMODULE , '</span><br /><br />'
-		, _MODULEINHOME , ' <span class="thick">' , $main_module , '</span><br />[ <a href="' , $admin_file , '.php?op=modules">' , _CHANGE , '</a> ]</div>';
+	echo '<div class="text-center"><span class="thick">', htmlspecialchars($nuke_config['sitename'], ENT_QUOTES, _CHARSET), '.: ', _DEFHOMEMODULE, '</span><br /><br />', _MODULEINHOME, ' <span class="thick">', $main_module, '</span><br />[ <a href="', $admin_file, '.php?op=modules">', _CHANGE, '</a> ]</div>';
 	CloseTable();
 
 	$guest_online_num = (int) $db->sql_numrows($db->sql_query('SELECT `uname` FROM `' . $prefix . '_session` WHERE `guest`=1'));
 	$member_online_num = (int) $db->sql_numrows($db->sql_query('SELECT `uname` FROM `' . $prefix . '_session` WHERE `guest`=0'));
 	$who_online_num = $guest_online_num + $member_online_num;
 	OpenTable();
-	echo '<div class="text-center"><span class="option">' , _WHOSONLINE , '</span><br /><br /><span class="content">' , _CURRENTLY , ' ' , $guest_online_num
-		, ' ' , _GUESTS , ' ' , $member_online_num , ' ' , _MEMBERS , '<br /><br />'
-		, _BTD , ': <span class="thick">' , $userCount , '</span> - ' , _BYD , ': <span class="thick">' , $userCount2 , '</span></span></div>';
+	echo '<div class="text-center"><span class="option">', _WHOSONLINE, '</span><br /><br /><span class="content">', _CURRENTLY, ' ', $guest_online_num , ' ', _GUESTS, ' ', $member_online_num, ' ', _MEMBERS, '<br /><br />'
+		, _BTD , ': <span class="thick">', $userCount, '</span> - ', _BYD, ': <span class="thick">', $userCount2, '</span></span></div>';
 	CloseTable();
 
 	if (is_active('News')) {
@@ -327,49 +326,49 @@ function adminMain() {
 			$slockres3 = $db->sql_query('SELECT COUNT(*) FROM ' . $prefix . '_stories WHERE slock = 3');
 			list($slocknum3) = $db->sql_fetchrow($slockres3, SQL_NUM);	   
 			function headfoot($newssort, $archivetopics) {
-			  echo '<tr>' , PHP_EOL
-				 , '<td class="text-center">ID</td>' , PHP_EOL
-				 , '<td class="archivetitle">' , ($archivetopics == 0 ? _TOPIC . ' &amp; ' . _TITLE : _TITLE) , '</td>' , PHP_EOL
-				 , '<td class="text-center">';
-				  echo _TONPOSTTIME , '</td>' , PHP_EOL;
-			  if ($newssort == 1) { 
-			  echo '<td class="text-center">',_TONSORTTIME , '</td>' , PHP_EOL;
-			  }
-			  echo '<td class="text-center">' , _TONEXPTIME , '</td>' , PHP_EOL
-				 , '</tr>' , PHP_EOL;
+			echo '<tr>', PHP_EOL
+				,'<td class="text-center">ID</td>', PHP_EOL
+				,'<td class="archivetitle">', ($archivetopics == 0 ? _TOPIC . ' &amp; ' . _TITLE : _TITLE), '</td>', PHP_EOL
+				,'<td class="text-center">';
+			echo _TONPOSTTIME, '</td>', PHP_EOL;
+			if ($newssort == 1) { 
+				echo '<td class="text-center">', _TONSORTTIME, '</td>', PHP_EOL;
+			}
+			echo '<td class="text-center">', _TONEXPTIME, '</td>', PHP_EOL
+				,'</tr>', PHP_EOL;
 			}
 			function hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage) {
 				global $multilingual;
-				echo '<div>' , PHP_EOL
-				   , '<p>' , $editdel , '</p>' , PHP_EOL
-				   , ($multilingual == 1 && $alanguage != '' ? '<p>' . _LANGUAGE . ': ' . $alanguage . '</p>' . PHP_EOL : '')
-				   , '<p>' , _TONSTORYLOCK , ': ' , $slockstatus , '</p>' , PHP_EOL
-				   , '<p>' , _TONAUTHOR , ': ' , $informant , '</p>' , PHP_EOL
-				   , '<p>' , _TONREADS , ': ' , $scounter , '</p>' , PHP_EOL
-				 , '</div>' , PHP_EOL;
+				echo '<div>', PHP_EOL
+					,'<p>', $editdel, '</p>', PHP_EOL
+					,($multilingual == 1 && $alanguage != '' ? '<p>' . _LANGUAGE . ': ' . $alanguage . '</p>' . PHP_EOL : '')
+					,'<p>', _TONSTORYLOCK, ': ', $slockstatus, '</p>', PHP_EOL
+					,'<p>', _TONAUTHOR, ': ', $informant, '</p>', PHP_EOL
+					,'<p>', _TONREADS, ': ', $scounter, '</p>', PHP_EOL
+					,'</div>', PHP_EOL;
 			}
-			 echo '<div align="center" class="archiveswitch">' , PHP_EOL
-			   //, '<p class="thick large">' , _LAST , ' 20 ' , _ARTICLES , '</p>' , PHP_EOL	
-			   , '<p class="thick large">' , _LAST , ' ' , _ARTICLES , '</p>' , PHP_EOL
-			   , '<a href="' , $admin_file , '.php?op=newsarchive&amp;slocker=0">' , _TONSTORYLOCKACTIVE , '<br />(' , ($slocknum0 > 0 ? $slocknum0 : '0') , ')</a>' , PHP_EOL
-			   , '<a href="' , $admin_file , '.php?op=newsarchive&amp;slocker=1">' , _TONSTORYLOCKSUBMIT , '<br />(' , ($slocknum1 > 0 ? $slocknum1 : '0') , ')</a>' , PHP_EOL
-			   , '<a href="' , $admin_file , '.php?op=newsarchive&amp;slocker=2">' , _TONSTORYLOCKTIMED , '<br />(' , ($slocknum2 > 0 ? $slocknum2 : '0') , ')</a>' , PHP_EOL
-			   , '<a href="' , $admin_file , '.php?op=newsarchive&amp;slocker=3">' , _TONSTORYLOCKFULL , '<br />(' , ($slocknum3 > 0 ? $slocknum3 : '0') , ')</a>' , PHP_EOL
-			   , '</div>' , PHP_EOL
-			   , '<br />' , PHP_EOL;
+			echo '<div align="center" class="archiveswitch">', PHP_EOL
+			#	,'<p class="thick large">', _LAST, ' 20 ' ,_ARTICLES, '</p>', PHP_EOL	
+				,'<p class="thick large">', _LAST, ' ', _ARTICLES, '</p>', PHP_EOL
+				,'<a href="', $admin_file, '.php?op=newsarchive&amp;slocker=0">', _TONSTORYLOCKACTIVE, '<br />(', ($slocknum0 > 0 ? $slocknum0 : '0'), ')</a>', PHP_EOL
+				,'<a href="', $admin_file, '.php?op=newsarchive&amp;slocker=1">', _TONSTORYLOCKSUBMIT, '<br />(', ($slocknum1 > 0 ? $slocknum1 : '0'), ')</a>', PHP_EOL
+				,'<a href="', $admin_file, '.php?op=newsarchive&amp;slocker=2">', _TONSTORYLOCKTIMED, '<br />(', ($slocknum2 > 0 ? $slocknum2 : '0'), ')</a>', PHP_EOL
+				,'<a href="', $admin_file, '.php?op=newsarchive&amp;slocker=3">', _TONSTORYLOCKFULL, '<br />(', ($slocknum3 > 0 ? $slocknum3 : '0'), ')</a>', PHP_EOL
+				,'</div>', PHP_EOL
+				,'<br />', PHP_EOL;
 			if ($radminarticle == 1 || $radminsuper == 1) {
 				 echo '<div class="text-center">'
-					, '<form action="' , $admin_file , '.php" method="post">'
-					, '<label for="sid">', _STORYID , ':</label><input style="margin: 5px;" type="text" id="sid" name="sid" size="10" />'
-					, '<select style="margin: 5px;" name="op">'
-					, '<option value="EditStory" selected="selected">' , _EDIT , '</option>'
-					, '<option value="RemoveStory">' , _DELETE , '</option>'
-			   		, '</select>'
-			   		, '<input class="button1" type="submit" value="' , _GO , '" />'
-			   		, '</form></div>'
-			   		, '<br />' , PHP_EOL;					
+					,'<form action="', $admin_file, '.php" method="post">'
+					,'<label for="sid">', _STORYID, ':</label><input style="margin: 5px;" type="text" id="sid" name="sid" size="10" />'
+					,'<select style="margin: 5px;" name="op">'
+					,'<option value="EditStory" selected="selected">', _EDIT, '</option>'
+					,'<option value="RemoveStory">', _DELETE, '</option>'
+					,'</select>'
+					,'<input class="button1" type="submit" value="', _GO, '" />'
+					,'</form></div>'
+					,'<br />', PHP_EOL;
 			}
-			echo '<table border="0" cellpadding="0" cellspacing="0" class="archivelist centered">' , PHP_EOL;				
+			echo '<table border="0" cellpadding="0" cellspacing="0" class="archivelist centered">', PHP_EOL;
 			headfoot($newssort, $archivetopics);
 			while (list($sid, $said, $title, $time, $scounter, $informant, $alanguage, $time2, $time3, $slock, $topicid, $topicname, $topictext) = $db->sql_fetchrow($result, SQL_NUM)) {
 				if ((empty($alanguage))) {
@@ -381,7 +380,9 @@ function adminMain() {
 				$timestamp3 = new DateTime($time3);	
 				$postingtime = $timestamp1->format('d.m.Y - H:i');
 				$sortingtime = $timestamp2->format('d.m.Y - H:i');
-				if ($time3 != '0000-00-00 00:00:00') {
+				# php7 fix
+				#if ($time3 != '0000-00-00 00:00:00') {
+				if ($time3 != '1000-01-01 00:00:00') {
 					$expiretime = $timestamp3->format('d.m.Y - H:i');
 				} else {
 					$expiretime = '&nbsp;';
@@ -401,38 +402,38 @@ function adminMain() {
 						$editdel = '<a href="' . $admin_file . '.php?op=EditStory&amp;sid=' . $sid . '">' . _EDIT . '</a><a href="' . $admin_file . '.php?op=RemoveStory&amp;sid=' . $sid . '">' . _DELETE . '</a>';
 					}
 				}
-				echo '<tr class="archivehover">' , PHP_EOL
-				   , '<td class="text-center">' , $sid , '</td>' , PHP_EOL
-				   , '<td>' , PHP_EOL
-				   , '<div class="tooltip">';
+				echo '<tr class="archivehover">', PHP_EOL
+					,'<td class="text-center">', $sid, '</td>', PHP_EOL
+					,'<td>', PHP_EOL
+					,'<div class="tooltip">';
 				if ($topicid != '' && $archivetopics == 0) {
-					echo '<a href="modules.php?name=News&amp;new_topic=' , $topicid , '">' , $topictext , '</a> - ';
+					echo '<a href="modules.php?name=News&amp;new_topic=', $topicid, '">', $topictext, '</a> - ';
 				}
-					echo '<a href="modules.php?name=News&amp;file=article&amp;sid=' , $sid , '">' , $title , '</a>' , PHP_EOL;
+					echo '<a href="modules.php?name=News&amp;file=article&amp;sid=', $sid, '">', $title, '</a>', PHP_EOL;
+				hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
+				echo '</div>', PHP_EOL
+					,'</td>', PHP_EOL
+					,'<td class="text-center">', PHP_EOL
+					,'<div class="tooltip">', $postingtime, "\n";
 					hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
 				echo '</div>' , PHP_EOL
-				   , '</td>' , PHP_EOL
-				   , '<td class="text-center">' , PHP_EOL
-				   , '<div class="tooltip">' , $postingtime , "\n";
-					hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
-				echo '</div>' , PHP_EOL
-				   , '</td>' , PHP_EOL;
-				if ($newssort == 1) {   
-				echo '<td class="text-center">' , PHP_EOL
-				   , '<div class="tooltip">' , $sortingtime , "\n";
-					hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);	
-				echo '</div>' , PHP_EOL
-				   , '</td>' , PHP_EOL;
+					,'</td>' , PHP_EOL;
+				if ($newssort == 1) {
+				echo '<td class="text-center">', PHP_EOL
+					,'<div class="tooltip">', $sortingtime , "\n";
+				hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
+				echo '</div>', PHP_EOL
+					,'</td>', PHP_EOL;
 				}
-				echo '<td class="text-center">' , PHP_EOL
-				   , '<div class="tooltip">' , $expiretime , "\n";
-					hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
-				echo '</div>' , PHP_EOL
-				   , '</td>' , PHP_EOL
-				   , '</tr>' , PHP_EOL;
+				echo '<td class="text-center">', PHP_EOL
+					,'<div class="tooltip">', $expiretime, "\n";
+				hoveritems($editdel, $slockstatus, $informant, $scounter, $alanguage);
+				echo '</div>', PHP_EOL
+					,'</td>', PHP_EOL
+					,'</tr>', PHP_EOL;
 			}
 			headfoot($newssort, $archivetopics);
-			echo '</table>' , PHP_EOL;
+			echo '</table>', PHP_EOL;
 		}
 		CloseTable();
 	}
@@ -440,8 +441,7 @@ function adminMain() {
 	if (is_active('Surveys')) {
 		list($pollID, $pollTitle) = $db->sql_fetchrow($db->sql_query('SELECT `pollID`, `pollTitle` FROM `' . $prefix . '_poll_desc` WHERE `artid`=0 ORDER BY `pollID` DESC LIMIT 1'), SQL_NUM);
 		OpenTable();
-		echo '<div class="text-center"><span class="thick">' , _CURRENTPOLL , ':</span> ' , htmlspecialchars($pollTitle, ENT_QUOTES, _CHARSET)
-			, ' [ <a href="' , $admin_file , '.php?op=polledit&amp;pollID=' , $pollID , '">' , _EDIT , '</a> | <a href="' , $admin_file , '.php?op=create">' , _ADD , '</a> ]</div>';
+		echo '<div class="text-center"><span class="thick">', _CURRENTPOLL, ':</span> ', htmlspecialchars($pollTitle, ENT_QUOTES, _CHARSET), ' [ <a href="', $admin_file, '.php?op=polledit&amp;pollID=', $pollID, '">', _EDIT, '</a> | <a href="', $admin_file, '.php?op=create">', _ADD, '</a> ]</div>';
 		CloseTable();
 	}
 
@@ -487,19 +487,19 @@ function create_first() {
 			include_once 'header.php';
 			title($nuke_config['sitename'] . ': ' . _ADMINISTRATION);
 			OpenTable();
-			echo '<div class="text-center thick">' , _NOADMINYET , '</div><br />'
-				, '<form action="' , $admin_file , '.php" method="post">'
-				, '<table style="border-style: none;">'
-				, '<tr><td><label for="name">' , _NICKNAME , ':</label></td><td><input type="text" id="name" name="name" size="30" maxlength="25" /></td></tr>'
-				, '<tr><td><label for="url">' , _HOMEPAGE , ':</label></td><td><input type="text" id="url" name="url" size="30" maxlength="255" value="http://" /></td></tr>'
-				, '<tr><td><label for="email">' , _EMAIL , ':</label></td><td><input type="text" id="email" name="email" size="30" maxlength="255" /></td></tr>'
-				, '<tr><td><label for="pwd">' , _PASSWORD , ':</label></td><td><input type="password" id="pwd" name="pwd" size="11" maxlength="40" /></td></tr>'
-				, '<tr><td colspan="2"><label for="user_new_yes">' , _CREATEUSERDATA , ' </label>'
-				, '<input type="radio" id="user_new_yes" name="user_new" value="1" checked="checked" />', _YES , '&nbsp;&nbsp;'
-				, '<input type="radio" id="user_new_no" name="user_new" value="0" />' , _NO , '</td></tr>'
-				, '<tr><td><input type="hidden" name="op" value="create_first" />'
-				, '<input class="button1" type="submit" value="' , _SUBMIT , '" />'
-				, '</td></tr></table></form>';
+			echo '<div class="text-center thick">', _NOADMINYET, '</div><br />'
+				,'<form action="', $admin_file, '.php" method="post">'
+				,'<table style="border-style: none;">'
+				,'<tr><td><label for="name">', _NICKNAME, ':</label></td><td><input type="text" id="name" name="name" size="30" maxlength="25" /></td></tr>'
+				,'<tr><td><label for="url">', _HOMEPAGE, ':</label></td><td><input type="text" id="url" name="url" size="30" maxlength="255" value="http://" /></td></tr>'
+				,'<tr><td><label for="email">', _EMAIL, ':</label></td><td><input type="text" id="email" name="email" size="30" maxlength="255" /></td></tr>'
+				,'<tr><td><label for="pwd">', _PASSWORD, ':</label></td><td><input type="password" id="pwd" name="pwd" size="11" maxlength="40" /></td></tr>'
+				,'<tr><td colspan="2"><label for="user_new_yes">', _CREATEUSERDATA, ' </label>'
+				,'<input type="radio" id="user_new_yes" name="user_new" value="1" checked="checked" />', _YES, '&nbsp;&nbsp;'
+				,'<input type="radio" id="user_new_no" name="user_new" value="0" />', _NO, '</td></tr>'
+				,'<tr><td><input type="hidden" name="op" value="create_first" />'
+				,'<input class="button1" type="submit" value="', _SUBMIT, '" />'
+				,'</td></tr></table></form>';
 			CloseTable();
 			include_once 'footer.php';
 			die();

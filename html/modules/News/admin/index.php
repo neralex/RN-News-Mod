@@ -59,7 +59,7 @@ if (is_mod_admin('admin') || is_mod_admin($module_name)) {
 		include_once 'modules/' . $module_name . '/admin/catagories.php';
 		include_once 'modules/' . $module_name . '/admin/config.php';
 		include_once 'modules/' . $module_name . '/admin/archive.php';
-		 
+
 		switch($op) {
 
 			case 'adminStory':
@@ -162,7 +162,7 @@ function storystatus($sid, $topicsel, $offset, $go) {
 		} elseif ($cslock == 3) {
 			$newslock = 0;
 		}
-		if (($cslock == 0 || $cslock == 3) && $ctime3 == '0000-00-00 00:00:00') {
+		if (($cslock == 0 || $cslock == 3) && $ctime3 == '') {
 			$qry = $db->sql_query('UPDATE `' . $prefix . '_stories` SET `slock` = \'' . $newslock . '\' WHERE `sid` = \'' . $sid . '\'');
 			Header('Location: ' . $admin_file . '.php?op=newsarchive&slocker=' . $newslock . ($topicsel != '' ? '&topicsel=' . $topicsel : '') . ($offset != '' ? '&offset=' . $offset : '') . ($go != '' ? '&go=' . $go : '')); exit;
 		} else {

@@ -20,7 +20,6 @@ New Install:
 3. execute the newsinstall.php as admin
 4. if all fields are installed, then you can overwrite the rest of the files inside the html folder
 5. if you have autonews or submitted news, execute the newsinstall.php as admin again to move all autonews, submit news and their tags.
-6. edit your config.php for ckeditor
 7. now you can go into your "News Config" and choose your options!
 8. if is it all fine, then delete the newsinstall.php
 
@@ -29,7 +28,7 @@ Update from a prior version:
 
 1. unzip the archive
 2. upload at 1st the newsinstall.php inside the html folder
-3. execute the newsinstall.php as admin
+3. execute the newsinstall.php as admin and follow the update-instructions
 4. if all new fields are installed, then you can overwrite the rest of the files inside the html folder
 5. now you can go into your "News Config" and choose your options!
 6. if is it all fine, then delete the newsinstall.php

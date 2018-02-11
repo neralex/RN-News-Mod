@@ -19,6 +19,7 @@
  * http://www.nukefixes.com - Development location
  * http://sourceforge.net/projects/nukepatched/ - CVS Last file update: 30/07/05
  *
+ * neralex: function autnews() edited and function getTopics() moved into News module
 */
 
 /**
@@ -64,9 +65,9 @@ if (@ini_get('date.timezone') == '') {
 }
 
 if (!@ini_get('register_globals')) {
-   extract($_GET, EXTR_OVERWRITE);
-   extract($_POST, EXTR_OVERWRITE);
-   extract($_COOKIE, EXTR_OVERWRITE);
+	extract($_GET, EXTR_OVERWRITE);
+	extract($_POST, EXTR_OVERWRITE);
+	extract($_COOKIE, EXTR_OVERWRITE);
 }
 
 /**
@@ -1010,7 +1011,7 @@ function delQuotes($string) {
  * However, in order to help ensure XHTML compliance, the kses_no_null, kses_js_entities and
  * kses_normalize_entities functions are very useful.
  */
-function check_html ($string, $allowed_html = '', $allowed_protocols = array()) { 
+function check_html ($string, $allowed_html = '', $allowed_protocols = array()) {
 	include_once NUKE_INCLUDE_DIR . 'kses/kses.php';
 
 	if (get_magic_quotes_gpc() == 1) {
@@ -1139,7 +1140,7 @@ function filter($what, $strip = '', $save = '', $type = '') {
 function formatTimestamp($time) {
 	global $datetime, $locale;
 
-	static $localeSet;     // setlocale() can be expensive to call; only need to call it once
+	static $localeSet; // setlocale() can be expensive to call; only need to call it once
 	if (!isset($localeSet)) {
 		setlocale(LC_TIME, $locale);
 		$localeSet = 1;
@@ -1193,10 +1194,9 @@ function adminblock() {
 		$title = _WAITINGCONT;
 		$display = 0;
 		$content = '<div class="ul-box"><ul class="rn-ul">';
-		$result = $db->sql_query('SELECT COUNT(*) FROM ' . $prefix . '_stories WHERE slock = 1');
-		list($num) = $db->sql_fetchrow($result, SQL_NUM);
+		$num = $db->sql_numrows($db->sql_query('SELECT * FROM ' . $prefix . '_queue'));
 		$display = $display + $num;
-		if ($num > 0) $content .= '<li><a href="' . $admin_file . '.php?op=newsarchive&amp;slocker=1">' . _SUBMISSIONS . '</a>: ' . $num . '</li>';
+		if ($num > 0) $content .= '<li><a href="' . $admin_file . '.php?op=submissions">' . _SUBMISSIONS . '</a>: ' . $num . '</li>';
 		$num = $db->sql_numrows($db->sql_query('SELECT * FROM ' . $prefix . '_reviews_add'));
 		$display = $display + $num;
 		if ($num > 0) $content .= '<li><a href="' . $admin_file . '.php?op=reviews">' . _WREVIEWS . '</a>: ' . $num . '</li>';
@@ -1283,8 +1283,9 @@ function userblock() {
 	}
 }
 
-//This function should be in news not here.  Will move later.
-function getTopics($s_sid) {
+# This function should be in news not here.  Will move later.
+# neralex: moved into News module
+/*function getTopics($s_sid) {
 	global $db, $prefix, $topicimage, $topicname, $topictext;
 	$sid = intval($s_sid);
 	$result = $db->sql_query('SELECT t.topicname, t.topicimage, t.topictext FROM ' . $prefix . '_stories s LEFT JOIN ' . $prefix . '_topics t ON t.topicid = s.topic WHERE s.sid = \'' . $sid . '\'');
@@ -1292,7 +1293,7 @@ function getTopics($s_sid) {
 	$topicname = $row['topicname'];
 	$topicimage = $row['topicimage'];
 	$topictext = $row['topictext'];
-}
+}*/
 
 /**
  * nukePIE
@@ -1361,6 +1362,7 @@ function seoReadFeed ($url = '', $maxrss = 20, $refresh = 3600) {
 	return $content;
 }
 
+# neralex: function edit for Newsmod inckuding php7 fix
 function automated_news() {
 	global $currentlang, $db, $multilingual, $prefix;
 	if ($multilingual == 1) {
@@ -1374,7 +1376,7 @@ function automated_news() {
 	while (list($sid, $time, $time3, $slock) = $db->sql_fetchrow($result, SQL_NUM)) {
 		if ($time <= $date && $slock == 2) {
 		$db->sql_query('update '.$prefix.'_stories set '."slock='0'".' where sid=\''.$sid.'\'');
-		} elseif ($time3 != '0000-00-00 00:00:00' && $time3 <= $date && $slock == 0) {
+		} elseif ($time3 != '1000-01-01 00:00:00' && $time3 <= $date && $slock == 0) {
 		$db->sql_query('update '.$prefix.'_stories set '."slock='3'".' where sid=\''.$sid.'\'');
 		}
 	}
@@ -1854,7 +1856,7 @@ function ads($position) {
 				. '</object>'
 				. '<!-- <![endif]--></div>';
 		} else {
-			$ads = '<div class="text-center"><a href="index.php?op=ad_click&amp;bid=' . $bid . '" target="_blank"><img src="' . $imageurl . '" border="0" alt="' . $alttext . '" title="' . $alttext . '" /></a></div>';
+			$ads = '<div class="text-center"><a href="index.php?op=ad_click&amp;bid=' . $bid . '" target="_blank"><img src="' . $imageurl . '" style="border: 0 none;" alt="' . $alttext . '" title="' . $alttext . '" /></a></div>';
 		}
 	} else {
 		$ads = '';
@@ -1868,7 +1870,7 @@ function ads($position) {
 function addCSSToHead($content, $type='file') {
 	global $headCSS;
 	// Duplicate external file?
-	if (($type == 'file') && (count($headCSS) > 0) && (in_array(array($type, $content), $headCSS))) return;
+	if (($type == 'file') && (is_array($headCSS) && count($headCSS) > 0) && (in_array(array($type, $content), $headCSS))) return;
 	$headCSS[] = array($type, $content);
 	return;
 }
@@ -1876,7 +1878,7 @@ function addCSSToHead($content, $type='file') {
 function addJSToHead($content, $type='file') {
 	global $headJS;
 	// Duplicate external file?
-	if (($type == 'file') && (count($headJS) > 0) && (in_array(array($type, $content), $headJS))) return;
+	if (($type == 'file') && (is_array($headJS) && count($headJS) > 0) && (in_array(array($type, $content), $headJS))) return;
 	$headJS[] = array($type, $content);
 	return;
 }
@@ -1884,7 +1886,7 @@ function addJSToHead($content, $type='file') {
 function addJSToBody($content, $type='file') {
 	global $bodyJS;
 	// Duplicate external file?
-	if (($type == 'file') && (count($bodyJS) > 0) && (in_array(array($type, $content), $bodyJS))) return;
+	if (($type == 'file') && (is_array($bodyJS) && count($bodyJS) > 0) && (in_array(array($type, $content), $bodyJS))) return;
 	$bodyJS[] = array($type, $content);
 	return;
 }

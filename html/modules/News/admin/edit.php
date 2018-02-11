@@ -49,12 +49,12 @@ function editStory($sid, $status) {
 					  . '$(\'#selecttopic\').multiselect({multiple: false, header: true, selectedList: 1});' . PHP_EOL
 					  . '$(\'#selecttopic\').multiselect().multiselectfilter();' . PHP_EOL
 					  . '  </script>' . PHP_EOL;
-			addJSToBody($selector,'inline');		
+			addJSToBody($selector,'inline');
 		}
 		$assochecklist = '<script type="text/javascript">' . PHP_EOL
 					   . '$(\'#selectall\').click(function() {$(\'input[type="checkbox"]\').attr(\'checked\', $(\'#selectall\').is(\'":checked\'));})' . PHP_EOL
 					   . '  </script>' . PHP_EOL;
-		addJSToBody($assochecklist,'inline');	
+		addJSToBody($assochecklist,'inline');
 		include_once 'header.php';
 		GraphicAdmin();
 		OpenTable();
@@ -72,9 +72,9 @@ function editStory($sid, $status) {
 		   , '<div' , ($previewstory == 1 ? ' class="display-none"' : '') , '>' , PHP_EOL
 		   , '	<div id="ton_preview" class="themepreview" style="border-color:' , $bgcolor2 , '; background-color:' , $bgcolor1 , ';">' , PHP_EOL
 		   , '		<img src="images/topics/' , $topicimage , '" border="0" align="right" class="themepreviewpic" title="' , $topictext , '" alt="" />' , PHP_EOL;
-		themepreview($subject, $hometext, $bodytext, $notes);	
+		themepreview($subject, $hometext, $bodytext, $notes);
 		echo '	</div>' , PHP_EOL
-		   , '</div>' , PHP_EOL;	  	   
+		   , '</div>' , PHP_EOL;
 		if ($statusnumeric == 1) {
 			echo '<div><span class="thick">' , _SAVESTATUS , '</span>: ' , _DONE , '!</div>' , PHP_EOL;
 		} elseif ($statusnumeric == 2) {
@@ -125,7 +125,8 @@ function editStory($sid, $status) {
 		   , '<input class="larger" type="text" name="subject" size="50" value="' , $subject , '" /><br />' , PHP_EOL;
 
 		echo '<div class="newssort">' , PHP_EOL;
-		if ($time2 == "0000-00-00 00:00:00" || $time2 == '') {
+		#php7 fix
+		if ($time2 == '') {
 			$time2 = $time;
 		}
 		preg_match('/(.*)?-(.*)?-(.*)? (.*)?:(.*)?:(.*)?/', $time, $matchposttime);
@@ -140,7 +141,7 @@ function editStory($sid, $status) {
 			echo _TONPOSTTIME;
 		}
 		echo '</span>: ' , $postingtime , '</p>' , PHP_EOL
-		   , '<p><span class="thick">' , _TONSORTTIME , '</span>:</p>' , PHP_EOL		   
+		   , '<p><span class="thick">' , _TONSORTTIME , '</span>:</p>' , PHP_EOL
 		   , '<select title="' , _DAY , '" name="dayselect" size="1">' , PHP_EOL;
 		for($i=1; $i<=31; $i++) {
 			echo '	<option value="' , (strlen($i)>1 ? $i : '0' . $i) , '"' , ($matchtime[3] == $i ? ' selected="selected"' : '') , '>' , (strlen($i)>1 ? $i : '0' . $i) , '</option>' , PHP_EOL;
@@ -155,7 +156,7 @@ function editStory($sid, $status) {
 		   , '<span class="newssortfiller">.</span>' , PHP_EOL;
 		$year_range_min = $newsyearmin;
 		$year_range_max = $newsyearmax;
-		$yearcheck = '';
+		$yearcheck = array();
 		if ($year_range_min == '0' || $year_range_max == '0') {
 			$timecheck = $db->sql_query('SELECT `time` FROM `' . $prefix . '_stories` WHERE `sid`');
 			while ($time_check = $db->sql_fetchrow($timecheck)) {
@@ -272,7 +273,8 @@ function editStory($sid, $status) {
 			   , '	</div>' , PHP_EOL
 			   , ($slock != 2 ? '</div>' . PHP_EOL : '');
 		}
-		if ($time3 == '0000-00-00 00:00:00' || $time3 == '') {
+		# php7 fix
+		if ($time3 == '') {
 			$expiretime = $date;
 			$dayexpire = date('j');
 			$monthexpire = date('n');
@@ -290,7 +292,7 @@ function editStory($sid, $status) {
 			$minexpire = $matchexpire[5];
 			$expirenone = 0;
 		}	
-		if ($date >= $expiretime && $expirenone == 1) {			
+		if ($date >= $expiretime && $expirenone == 1) {
 			$expirecheck1 = '';
 			$expirecheck0 = ' checked="checked"';
 			$hideclass2 = ($hideautotimes == 1 ? 'display-none' : '');
@@ -557,7 +559,7 @@ function changeStory($sid, $subject, $hometext, $bodytext, $tags, $topic, $uid, 
 		$postingtime = '';
 	}
 	if ($yearexpire != '' && $monthexpire != '' && $dayexpire != '' && $hourexpire != '' && $minexpire != '') {
-		$expiretime = $yearexpire . '-' . $monthexpire . '-' . $dayexpire . ' ' . $hourexpire . ':' . $minexpire . ':00';		
+		$expiretime = $yearexpire . '-' . $monthexpire . '-' . $dayexpire . ' ' . $hourexpire . ':' . $minexpire . ':00';
 	} else {
 		$expiretime = '';
 	}
@@ -578,6 +580,10 @@ function changeStory($sid, $subject, $hometext, $bodytext, $tags, $topic, $uid, 
 		$expireheck = 1;
 	} elseif ($automated2 == 1 && $expiretime != '' && $expiretime <= $today) {
 		$expireheck = 0;
+	} elseif ($automated2 == 0 && $expiretime != '') {
+		# new
+		$expireheck = 0;
+		$expiretime = '';
 	} else {
 		$expiretime = '';
 		$expireheck = 1;
@@ -605,7 +611,8 @@ function changeStory($sid, $subject, $hometext, $bodytext, $tags, $topic, $uid, 
 		if ($expireheck == 1) {
 			$time3 = '`time3` = \'' . $expiretime = $db->sql_escape_string($expiretime) . '\',';
 		} else {
-			$time3 = '';
+			$time3 = '`time3` = NULL,';
+			#$time3 = '';
 		}
 		if (is_numeric($uid)) {
 			$uidnumeric = $uid;
@@ -655,7 +662,7 @@ function changeStory($sid, $subject, $hometext, $bodytext, $tags, $topic, $uid, 
 		} elseif (!$changequery && $timealert == '') {	
 			$status = 3;
 			Header('Location: ' . $admin_file . '.php?op=EditStory&sid=' . $sid . '&status=' . $status); exit;	
-		} else {	
+		} else {
 			$status = 3;
 			Header('Location: ' . $admin_file . '.php?op=EditStory&sid=' . $sid . '&status=' . $status); exit;
 		}

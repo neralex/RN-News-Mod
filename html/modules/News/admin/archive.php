@@ -55,7 +55,7 @@ function newsarchive($slocker, $topicsel) {
 			$urlextension = '&amp;topicsel=' . $topicnumeric;
 			$checktopic = $db->sql_query('SELECT `sid` FROM `' . $prefix . '_stories` WHERE `topic` = ' . $topicnumeric . '');
 			$numtopic = $db->sql_numrows($checktopic);
-			if ($numtopic != 0) {		  
+			if ($numtopic != 0) {
 				$WHERE = 'WHERE s.`topic` = ' . $topicnumeric;
 				$path = $admin_file . '.php?op=' . $op . '&amp;topicsel=' . $topicnumeric;
 			} else {
@@ -268,7 +268,9 @@ function newsarchive($slocker, $topicsel) {
 		$timestamp3 = new DateTime($row['time3']);	
 		$postingtime = $timestamp1->format('d.m.Y - H:i');
 		$sortingtime = $timestamp2->format('d.m.Y - H:i');
-		if ($row['time3'] != '0000-00-00 00:00:00') {
+		# php7 fix
+		#if ($row['time3'] != '0000-00-00 00:00:00') {
+		if ($row['time3'] != '') {
 			$expiretime = $timestamp3->format('d.m.Y - H:i');
 		} else {
 			$expiretime = '&nbsp;';
@@ -298,7 +300,9 @@ function newsarchive($slocker, $topicsel) {
 			$editdel  = '<a href="' . $admin_file . '.php?op=EditStory&amp;sid=' . $sid . '">' . _EDIT . '</a>';
 			$editdel .= '<a href="' . $admin_file . '.php?op=RemoveStory&amp;archive=1' . ($topicsel != '' ? '&amp;topicsel=' . $topicsel : '') . '&amp;sid=' . $sid . '">' . _DELETE . '</a>';
 			$storystatus = '';
-			if (($slock1 == 0 || $slock1 == 3) && $row['time3'] == '0000-00-00 00:00:00') {
+			# php7 fix
+			#if (($slock1 == 0 || $slock1 == 3) && $row['time3'] == '0000-00-00 00:00:00') {
+			if (($slock1 == 0 || $slock1 == 3) && $row['time3'] == '') {
 				$storystatus  = '<a class="rn_csrf" href="' . $admin_file . '.php?op=StoryStatus' . ($topicsel != '' ? '&amp;topicsel=' . $topicsel : '') . ($off != 1 ? '&amp;offset=' . $off : '') . ($go != $default ? '&amp;go=' . $go : '') . '&amp;sid=' . $sid . '">' . $slockstatus . '</a>';
 			}
 		}

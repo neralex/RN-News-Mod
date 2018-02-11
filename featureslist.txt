@@ -48,7 +48,6 @@ Features-List:
 - added updated social-icons for social-sprites
 - socialsharing links open now in a popup not more in a new window or tab
 - remove radminsuper variable from admin functions
-- feadcreator uft-8 issue quick&dirty fixed
 - kses allowed protocols fix
 - added jQuery charcounter for ckeditor
 - after creating a new article you jump now directly in the archive with a topic selection, when a topic was selected

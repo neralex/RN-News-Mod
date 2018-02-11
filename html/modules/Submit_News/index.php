@@ -15,7 +15,7 @@
  */
 
 if (!defined('MODULE_FILE')) {die('You can\'t access this file directly...');}
-if (!defined('PHP_EOL')) define ('PHP_EOL', strtoupper(substr(PHP_OS,0,3) == 'WIN') ? "\r\n" : "\n");
+
 //$module_name = basename(dirname(__FILE__));
 $module_name = 'News';
 global $db, $prefix, $currentlang;
