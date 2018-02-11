@@ -1,0 +1,56 @@
+/* filter styles */
+.ui-multiselect-hasfilter ul {position:relative; top:2px;}
+.ui-multiselect-filter {float:left; font-size:11px;}
+.ui-multiselect-filter input {width:178px; font-size:10px; margin-left:1px; height:15px; padding:1px; border:1px solid #292929; -webkit-appearance:textfield; -webkit-box-sizing:content-box;}
+.ui-multiselect-filter input, .ui-multiselect-filter input::-moz-focus-inner {border:0px;}
+/* multiselect styles */
+.ui-multiselect {padding:2px 0 0px 4px; text-align:left;}
+.ui-multiselect span.ui-icon {float:right;}
+.ui-multiselect-single .ui-multiselect-checkboxes input {position:absolute !important; top: auto !important; left:-9999px;}
+.ui-multiselect-single .ui-multiselect-checkboxes label {padding-left:5px !important; font-weight:normal !important;}
+.ui-multiselect-header {margin-bottom:3px; padding:3px 0 3px 4px; background: #a1c8c7 !important;}
+.ui-multiselect-header ul {font-size:11px;}
+.ui-multiselect-header ul li {float:left; padding:0 10px 0 0;}
+.ui-multiselect-header a {text-decoration:none;}
+.ui-multiselect-header a:hover {text-decoration:underline;}
+.ui-multiselect-header span.ui-icon {float:left;}
+.ui-multiselect-header li.ui-multiselect-close {float:right; text-align:right; padding-right:0;}
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000}
+.ui-multiselect-checkboxes {position:relative /* fixes bug in IE6/7 */; overflow-y:scroll}
+.ui-multiselect-checkboxes label {cursor:default; display:block; border:1px solid transparent; padding:3px 1px;  font-weight:normal !important;}
+.ui-multiselect-checkboxes label input { position:relative; top:1px;}
+.ui-multiselect-checkboxes li { clear:both; font-size:11px; padding-right:3px;}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label {text-align:center; border-bottom:1px solid;}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a {display:block; padding:3px; margin:1px 0; text-decoration:none;}
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none;}
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden {display: none;}
+.ui-helper-hidden-accessible {position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px);}
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;}
+.ui-helper-clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.ui-helper-clearfix {display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix {height:1%;}
+.ui-helper-clearfix {display:block;}
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+/* Component containers
+----------------------------------*/
+.ui-widget {color: #000;}
+.ui-widget .ui-widget {}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {/*font-size:11px;*/}
+.ui-widget-content {border: 1px solid #d2d2d3; background: #dbdbdb; color: #000;}
+.ui-widget-content a {color: #000;}
+.ui-widget-header {border: 1px solid #d2d2d3; background: #dbdbdb; color: #ffffff; font-weight: bold;}
+.ui-widget-header a { color: #ffffff; }
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border: 1px solid #d2d2d3; background: #dbdbdb;}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {color: #000; text-decoration: none;}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {border: 1px solid #d2d2d3; background: #eeeeee; color: #000;}
+.ui-state-hover a, .ui-state-hover a:hover {color: #000; text-decoration: none;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border: 1px solid #d2d2d3; background: #ffffff; color: #000}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {color: #000; text-decoration: none;}
+.ui-widget :active {outline: none;}

@@ -1,0 +1,195 @@
+<?php
+/**
+ * @PHP-NUKE: Web Portal System
+ * @package Tricked Out News
+ * @version 2.6 (RN News-Mod)
+ * @file: lang-spanish.php (admin)
+ * @copyright (c) 2002 by Francisco Burzi
+ * @Additional security & Abstraction layer conversion 2003 chatserv http://www.nukeresources.com
+ * @nukeWYSIWYG Copyright (c) 2005 Kevin Guske http://nukeseo.com
+ * @kses developed by Ulf Harnhammar http://kses.sf.net
+ * @RavenNuke(tm) Support:
+ * 2012 - Nuken http://www.trickedoutnews.com
+ * 2013 - rework of all functions by neralex http://www.media.soefm.de
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
+define('_ACTIVATECOMMENTS','&iquest;Activar comentarios para esta historia?');
+define('_ADDARTICLE','Agregar Nuevo Art&iacute;culo');
+define('_ALLSTORIES','TODAS las historias bajo');
+define('_ANDCOMMENTS','y todos sus comentarios?');
+define('_ARESUREURL','(Si inclu&iacute;ste alguna URL, aseg&uacute;rese que sea v&aacute;lida y compruebe la ortograf&iacute;a.)');
+if (!defined('_AREYOUSURE')) define('_AREYOUSURE','&iquest;Est&aacute;s seguro de que incluy&oacute; una URL? &iquest;Puedes comprobar la ortograf&iacute;a?');
+define('_ARTICLEADMIN','Administraci&oacute;n de Art&iacute;culos e Historias');
+define('_ASELECTCATEGORY','Seleccionar Categor&iacute;a');
+define('_ATTACHAPOLL','Adjuntar una encuesta a este art&iacute;culo');
+define('_AUTOSTORYEDIT','Editar Historia Automatizada');
+define('_CATADDED','Nueva Categor&iacute;a Agregada!');
+define('_CATDELETED','Categor&iacute;a Eliminada!');
+define('_CATEGORIESADMIN','Administraci&oacute;n de Categor&iacute;as');
+define('_CATEGORYADD','Agregar Nueva Categor&iacute;a');
+define('_CATEGORYNAME','Nombre de la Categor&iacute;a');
+define('_CATEXISTS','Esta categor&iacute;a ya existe!');
+define('_CATNAME','Nombre de la Categor&iacute;a');
+define('_CATSAVED','Categor&iacute;a Guardada!');
+define('_CHNGPROGRAMSTORY','Seleccione nueva fecjha para esta historia:');
+define('_DELCATWARNING1','Puedes eliminar esta Categor&iacute;a y TODAS sus historias y comentarios');
+define('_DELCATWARNING2','o puedes mover TODAS las noticias a una nueva categor&iacute;a.');
+define('_DELCATWARNING3','&iquest;Qu&eacute; quiere hacer?');
+define('_DELETECATEGORY','Eliminar Categor&iacute;a');
+define('_DELETESTORY','eliminar Art&iacute;culo');
+define('_EDITARTICLE','Editar Art&iacute;culo');
+define('_APPROVEARTICLE','Aprobar Art&iacute;culo');
+define('_EMAILUSER','Enviar Correo al Usuario');
+define('_EXTENDEDTEXT','Texto Extendido');
+define('_GOTOADMIN','Ir a la Secci&oacute;n de Administraci&oacute;n');
+define('_HAS','tiene');
+define('_LEAVEBLANKTONOTATTACH','(Dejar en blanco para publicar el art&iacute;culo sin ning&uacute;n tipo de encuesta adjunta)<br />(NOTA: Las noticias automatizadas / programadas no pueden tener encuestas adjuntas)');
+define('_MOVEDONE','&iexcl;Felicidades! El traslado se ha completado!');
+define('_MOVESTORIES','Mover Historias a una Nueva Categor&iacute;a');
+define('_NEWSUBMISSIONS','Nuevos Env&iacute;os de Noticias');
+define('_NOARTCATEDIT','No puedes editar la categor&iacute;a <span class="italic">Art&iacute;culos </span>');
+define('_NOMOVE','No! Mover mis hitorias');
+if (!defined('_NOSUBJECT')) define('_NOSUBJECT','Sin Asunto');
+define('_NOSUBMISSIONS','No Hay Nuevos Env&iacute;os');
+define('_NOTAUTHORIZED1','No est&aacute;s autorizado a tocar este art&iacute;culo!');
+define('_NOTAUTHORIZED2','No puedes editar / suprimir art&iacute;culos que no has publicado');
+define('_NOTES','Notas');
+define('_NOWIS','Ahorav es');
+define('_ONLYIFCATSELECTED','Solo funciona si la categor&iacute;a <span class="italic">Art&iacute;culos</span> no fue seleccionada');
+if(!defined('_OPTION')) define('_OPTION','Opci&oacute;n');
+define('_POLLEACHFIELD','Por favor, introduzca cada opción disponible en un solo campo');
+define('_POLLTITLE','T&iacute;tulo de la Encuesta');
+define('_POSTSTORY','Publicar Historia');
+define('_PREVIEWSTORY','Previsualizar Historia');
+define('_PROGRAMSTORY','&iquest;Quieres programar esta historia?');
+define('_PUBLISHINHOME','&iquest;Publicar en la Portada?');
+define('_REMOVESTORY','&iquest;Est&aacute;s seguro de que deseas eliminar la historia #');
+define('_SELECTCATDEL','Seleccione una categor&iacute;a para eliminar');
+define('_SELECTNEWCAT','Por favor seleccione la nueva categor&iacute;a');
+define('_SELECTTOPIC','Seleccionar T&oacute;pico');
+define('_SENDPM','Enviar Mensaje Privado');
+define('_STORIESINSIDE','historias dentro');
+define('_STORYTEXT','texto de la Historia');
+define('_SUBMISSIONSADMIN','Administraci&oacute;n de Env&iacute;o de Historias');
+define('_THECATEGORY','La Categor&iacute;a');
+define('_USERPROFILE','Perfil del Usuario');
+define('_WILLBEMOVED','ser&aacute; trasladada.');
+define('_YESDEL','S&iacute;! Eliminar TODO!');
+if (!defined('_CATEGORY')) { define('_CATEGORY','Category'); }
+define('_TONCONFIG','Tricked Out News Control Panel');
+define('_TONSETUP','Control the features of Tricked Out News');
+define('_NEWSROWS','News columns display on index page');
+define('_BOOKMARK','Display Bookmarks on index?');
+define('_RBLOCKS','Display right block for articles?');
+define('_LINKLOCATION','Index Link locations');
+define('_ARTICLELINK','Display Readmore in a colorbox?');
+define('_ARTVIEW','View articles old style or new?');
+define('_TONUTL','Link title to article?');
+define('_TONPDF','Display PDF?');
+define('_TONUR','Display User Rating?');
+define('_TONSTF','Display Send to Friend?');
+define('_TONUCL','Use character count on index?');
+define('_TONCL','If so, how many characters do you want displayed?');
+define('_TONTAACT','Activate Top Ads?');
+define('_TONBAACT','Activate Bottom Ads?');
+define('_TONDIS','Use Disqus?');
+define('_TONSN','Disqus Short Name');
+define('_TONTA','To insert an ad above the article, enter the ads position number here');
+define('_TONBA','To insert an ad below the article, enter the ads position number here');
+define('_TONGAPI','Goo.gl API Key');
+define('_TONGSB','Use Goo.gl short url for social bookmarks?');
+define('_TONGA','Display Goo.gl short url at bottom of article?');
+define('_TONPREVIEW','Preview Ad:');
+define('_TONSHOWTAGS','Show tags on article and index?');
+define('_TAGSCLOUD','Tag Cloud');
+define('_SEPARATEDBYCOMMAS','Separate by commas');
+define('_TONMAIN','Admin Main');
+define('_TONAUTOLINKWARNING','You need to set $tnsl_bAutoTapLinks to true in rnconfig');
+// RN NEWS-Sort Mod
+define('_TONSORTDESCRIPTION10','News Sorting');
+define('_TONSORTDESCRIPTION11','Here you can define the fields in the database with which you want to sort the stories. If you choose to select <strong>Time</strong>, will first be sorted by the <strong>Sorting Time</strong> and if this is already taken, then sorted by the <strong>Posting Time</strong>.');
+define('_TONSORTDESCRIPTION20','News Order-Type');
+define('_TONSORTDESCRIPTION21','Here can you set the <strong>ORDER BY</strong> type of the Mysql-Query. It is possible to determine your stories by descending (<strong>DESC</strong>) or ascending (<strong>ASC</strong>) sort.');
+define('_TONSORTDESCRIPTION30','Counting Years (smallest value of Sorting-Time)');
+define('_TONSORTDESCRIPTION31','Here you can set the minimum value in order to count the years of sorting time. If you are selecting <strong>min year in db</strong>, then the <strong>smallest value</strong> would be determined in the database.');
+define('_TONSORTDESCRIPTION40','Counting Years (biggest value of Sorting-Time)');
+define('_TONSORTDESCRIPTION41','Here you can set the maximum value in order to count the years of sorting time. If you are selecting <strong>max year in db</strong>, then the <strong>biggest value</strong> would be determined in the database.');
+define('_TONSORTMINYEAR','min year in db');
+define('_TONSORTMAXYEAR','max year in db');
+if (!defined('_TONSORTTIME2')) define('_TONSORTTIME2','Tiempo');
+if (!defined('_TONSORTTIME')) define('_TONSORTTIME','Sorting-Time');
+if (!defined('_TONPOSTTIME')) define('_TONPOSTTIME','Posting-Time');
+define('_TONSUBMITTIME','Submit-Time');
+define('_TONAUTOTIME','Autosave-Time');
+if (!defined('_TONEXPTIME')) define('_TONEXPTIME','Expiration-Time');
+define('_TONSORTID','Art&iacute;culo-ID');
+define('_TONSORTDESC','descendente');
+define('_TONSORTASC','ascendente');
+define('_TONSORTYEARS','a&ntilde;os');
+define('_TONSORTYEAR','a&ntilde;o');
+define('_TONSORTMIN','minuto');
+define('_TONSORTSEC','segundo');
+define('_TONGAPIINFO','<p style="text-align:left; color:#000;"><strong>You will need to get a goo.gl API Key to use this feature.</strong></p><p style="text-align:left; color:#000;"><strong>How to get a key?</strong></p><p style="text-align:left; color:#000;">Visit the <a style="text-decoration: underline; color:#000;" href="http://code.google.com/apis/console/" target="_blank">Google APIs Console</a>, and:</p><ul style="margin:0; list-style:decimal; text-align:left; color:#000;"><li><strong>Create a project.</strong> You can create as many or as few projects as you need. (See the <a style="text-decoration: underline; color:#000;" href="http://code.google.com/apis/console-help/#SeparateProjects" target="_blank">Google APIs Console FAQ</a> for details.) Google will generate exactly one key per project.</li><li><strong>Activate the URL Shortener API.</strong> After creating a project, you should see a list of APIs, each with an Activate button. Click the one for the url shortener.</li><li><strong>Nab the key.</strong> Click <strong>Keys</strong> on the left-hand side to findout about yours. The "Value" is the string you want.</li><li><strong>Copy &amp; Paste</strong> the Key in the&nbsp;Goo.gl API Key field and save the changes.</li></ul>');
+define('_TONSNINFO','<p style="text-align:left; color:#000;"><strong>How to add Disqus to my site</strong></p><p style="text-align:left; color:#000;">You will need to go to <a style="text-decoration: underline; color:#000;" href="http://www.disqus.com" target="_blank">www.disqus.com</a> and create an account. Once your account is created, place your Disqus short name here and activate Disqus.</p>');
+define('_TONADINFO','<p style="text-align:left; color:#000;"><strong>How to add an ad in Tricked Out News</strong></p><p style="text-align:left; color:#000;">You must create an ad in the Advertising module and activate it. The default position is 0 which is the same as the position in the theme header. You can create a new position in the Advertising module admin and use that position with the Tricked Out News ads. Simple create the new position, add an ad with that position and activate it. Enter the Ad Position Number here and save. The new ad will appear in your News article page.</p>');
+if (!defined('_TONSTORYLOCK')) define('_TONSTORYLOCK','Status');
+if (!defined('_TONSTORYLOCKACTIVE')) define('_TONSTORYLOCKACTIVE','active');
+if (!defined('_TONSTORYLOCKSUBMIT')) define('_TONSTORYLOCKSUBMIT','submitted');
+if (!defined('_TONSTORYLOCKTIMED')) define('_TONSTORYLOCKTIMED','timed');
+if (!defined('_TONSTORYLOCKFULL')) define('_TONSTORYLOCKFULL','disabled');
+if (!defined('_TONSTORYLOCKEXP')) define('_TONSTORYLOCKEXP','expired');
+define('_TONHIDEAUTOTIMES','Hide the autopost and/or expiration (smaller than current date/time)');
+define('_TONHIDEAUTOTIMESFAQ','If the input fields of autopost and/or expiration are stored smaller than the current date/time, then they are hided with a little jQuery Script.');
+define('_TONEXPOLDTIME','You have stored a time, smaller as the current.<br />Enter a new date/time or its would be reseted.');
+define('_TONSELECTALL','select all');
+if (!defined('_TONAUTHOR')) define('_TONAUTHOR','Author');
+if (!defined('_TONREADS')) define('_TONREADS','Reads');
+define('_TONHIDEAUTOSUBMIT','Hide the autopost and expiration fields (Submit News)');
+define('_TONHIDEAUTOSUBMITFAQ','You can <strong>turn off</strong> the fields of <strong>Autopost-Time</strong> and <strong>Expiration-Time</strong> in the <strong>Submit News</strong>.');
+define('_TONHIDEPREVIEW','Hide the preview and show it in a colorbox (Edit &amp; Submit)');
+define('_TONHIDEPREVIEWFAQ','<strong>Hide</strong> the <strong>preview</strong> of a <strong>posted</strong> or <strong>submitted</strong> story in the formular and show it in a <strong>colorbox</strong>. This option <strong>contributes</strong> to the <strong>clarity</strong> of the form.');
+define('_TONARCHIVDEFAULT','Set a news archive default value of results per page');
+define('_TONARCHIVDEFAULTFAQ','Here you can set a <strong>default value</strong> of <strong>results per page</strong> for the <strong>news archive</strong>. If you leave it <strong>blank</strong>, then a <strong>value</strong> is used <strong>by 20 articles</strong> per page.');
+define('_TONARCHIVETOPICS','Hide the topicnames in the news archive');
+define('_TONARCHIVETOPICSFAQ','Here you can <strong>hide</strong> the <strong>topicnames</strong> in the <strong>news archive</strong>. This is for <strong>themes</strong> with a <strong>small width</strong>.');
+define('_TONSORTTIMEFAQ','Here you can set a <strong>time</strong>, to <strong>sort</strong> your <strong>stories</strong> besides your <strong>posting time</strong>. If you have <strong>change</strong> the <strong>News-Sorting</strong> option, from <strong>Story-ID</strong> to <strong>Sorting-Time</strong>, then it this <strong>timestamp</strong>, that control your sorting.<br /><br />If <strong>Sorting-Time</strong> and <strong>Posting-Time</strong> have the <strong>same value</strong> or the if the <strong>Sorting-Time</strong> is empty, then is the <strong>Posting-Time</strong> the <strong>main value</strong> of sorting.<br /><br />After add a new story, the <strong>Sorting-Time</strong> is smaller then the <strong>Posting-Time</strong>. <strong>This is intentional</strong>. So you can specify when creating an article, a <strong>Sorting-Time</strong> in the past, <strong>without editing</strong> the article.');
+define('_TONPOSTTIMEFAQ','Here you can set the <strong>Posting-Time</strong> of the article. This is <strong>only allowed</strong>, if you <strong>do not</strong> set the <strong>status</strong> to <strong>timed</strong> or <strong>active</strong> with a time in the past.');
+define('_TONAUTOPOSTTIMEFAQ','Here you can <strong>set a time</strong> to <strong>post</strong> an a time <strong>into the future</strong>. If the time has come, then <strong>goes</strong> the article <strong>automaticly online</strong>. This is an <strong>adaption</strong> of the old <strong>autonews</strong>. If you set the <strong>Posting-Time</strong> smaller then the <strong>current date</strong>, then the entered <strong>time</strong> would be <strong>not stored</strong> and it must set a new <strong>Autopost-Time</strong> in the future.');
+define('_TONEXPTIMEFAQ','Here you can set a time, to <strong>expire</strong> your <strong>article</strong>. If you set a <strong>time in the future</strong>, bigger as the current date/time, then goes the article <strong>automaticly</strong> to the status <strong>disabled</strong>. I you set the <strong>Expiration-Time</strong> smaller as the current date/time, then would be the <strong>Expiration-Time</strong> reseted and you must set a new time to expire.');
+define('_TONSTORYLOCKFAQ','Here you can choose the status of your article.<br /><br />If you choose <strong>disabled</strong>, so can <strong>no one of a users</strong> see or <strong>use the article</strong> on the page. <strong>only admins</strong> can use it. As <strong>admin</strong> you <strong>can use</strong> the article, how you knows it. the <strong>disabled-status</strong> allowed to use a article, but <strong>for all other visitors</strong> is the article <strong>blocked</strong>. this status <strong>works in</strong> all other <strong>modules</strong> or <strong>blocks</strong> with news-functions.<br /><br />the <strong>submit-option</strong> works as the <strong>disabled-status</strong>. this option is for locating the <strong>submit news</strong>. only if you set a <strong>Posting-Time in the past</strong>, then would be set the status to <strong>disabled</strong>.<br /><br />Only if you set a <strong>Posting-Time</strong> in the <strong>future</strong>, then you can set the <strong>status</strong> on <strong>timed</strong>. Remember here again: If you set a <strong>Expiration-Time</strong> smaller as the current date/time, then would be the <strong>Expiration-Time</strong> reseted.');
+define('_ACCOUNTSUSPEND','Cuenta Suspendida');
+define('_ACCOUNTDELETE','Cuenta Desactivada');
+define('_TONJQUERYSELECT','Use jQuery Selectboxes (Submit-User, Topics)');
+define('_TONJQUERYSELECTFAQ','With this option you can use the select boxes to choose the submit-user and the topics with a the powerfull jQuery-UI. You can also search in the select boxes.');
+define('_TONSUBMIT','Change the submit user');
+define('_TONSUBMITFAQ','Here you can <strong>change</strong> the <strong>submit user</strong> of the article. You can use this option <strong>until</strong> you have the article <strong>stored</strong> under a <strong>different status</strong> as submitted. Only then is the <strong>contribution</strong> to the <strong>user</strong> or the <strong>admin</strong> assigned.');
+define('_TONPENDING','The article is pending!');
+define('_SAVESTATUS','Save Status');
+if (!defined('_DONE')) define('_DONE','done');
+if (!defined('_FAIL')) define('_FAIL','failed');
+if (!defined('_APPROOVE')) define('_APPROOVE','approved');
+define('_TIMINGERROR','Timing-Error');
+define('_TIMINGFAIL','Your Posting-Time was not stored! Please enter a time in the future');
+define('_ARCHIVECHARLIMIT','Activate a character counter for the names of the topics and articles in the archive');
+define('_ARCHIVECHARLIMITFAQ','If you have activated the character counter, you can determine the values for the length of the names of topics and articles in the archive. This is especially helpful for small-width themes.');
+define('_ARCHIVECOUNTTOPICS','Determine a value for the length of the topic-names in the archive');
+define('_ARCHIVECOUNTTOPICSFAQ','The default value for the length of the topic-names in the archive is 20 characters if you do not specify a value.');
+define('_ARCHIVECOUNTTITLES','Determine a value for the length of the article-titles in the archive');
+define('_ARCHIVECOUNTTITLESFAQ','The default value for the length of the article-titles in the archive is 40 characters if you do not specify a value.');
+define('_ACTIVATEADMINNOTES','Activate Admin-Notes');
+if (!defined('_TONNOTTILE')) define('_TONNOTTILE','You don\'t have entered a title!');
+if (!defined('_TONGOBACK')) define('_TONGOBACK','Go Back');
+// submit news
+define('_THANKSSUB','Gracias por tu env&iacute;o!');
+define('_SUBSENT','Tu art&iacute;culo ha sido recivido...');
+define('_SUBTEXT','Su petici&oacute;n ser&aacute; revisada en las pr&oacute;ximas horas, si es interesante y relevante ser&aacute; publicada pronto.');
+define('_WEHAVESUB','En este momento tenemos');
+define('_WAITING','env&iacute;os esperando ser publicados.');
+define('_YOURNAME','Tu Nombre');
+if (!defined('_ERROR')) define('_ERROR','Error');
+if (!defined('_DAY')) define('_DAY','D&iacute;a');
+define('_SUBMITNEWS','Publicar Noticias');
+define('_SUBMITADVICE','Por favor escriba su art&iacute;culo / noticia rellenando el siguiente formulario y revise su publicaci&oacute;n.<br />Notese que no todos los env&iacute;os ser&aacute;n publicados.<br />Revisaremos la gram&aacute;tica de su noticia y, tal vez, puede ser editado por nuestro personal .');
+define('_BEDESCRIPTIVE','Sea descriptivo, claro y simple');
+define('_BADTITLES','mal t&iacute;tulo=\'Miren Esto!\' o \'Un Art&iacute;culo\'');
+define('_HTMLISFINE','HTML permitido, pero es muy importante que compruebes las URLs y etiquetas HTML!');

@@ -1,0 +1,37 @@
+/**
+ * @PHP-NUKE: Web Portal System
+ * @package Tricked Out News
+ * @version 2.6 (RN News-Mod)
+ * @file: install.txt
+ * @copyright (c) 2002 by Francisco Burzi
+ * @Additional security & Abstraction layer conversion 2003 chatserv http://www.nukeresources.com
+ * @nukeWYSIWYG Copyright (c) 2005 Kevin Guske http://nukeseo.com
+ * @kses developed by Ulf Harnhammar http://kses.sf.net
+ * @RavenNuke(tm) Support:
+ * 2012 - Nuken http://www.trickedoutnews.com
+ * 2013 - rework of all functions by neralex http://www.media.soefm.de
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
+
+New Install:
+
+1. unzip the archive
+2. upload at 1st the newsinstall.php inside the html folder
+3. execute the newsinstall.php as admin
+4. if all fields are installed, then you can overwrite the rest of the files inside the html folder
+5. if you have autonews or submitted news, execute the newsinstall.php as admin again to move all autonews, submit news and their tags.
+6. edit your config.php for ckeditor
+7. now you can go into your "News Config" and choose your options!
+8. if is it all fine, then delete the newsinstall.php
+
+
+Update from a prior version:
+
+1. unzip the archive
+2. upload at 1st the newsinstall.php inside the html folder
+3. execute the newsinstall.php as admin
+4. if all new fields are installed, then you can overwrite the rest of the files inside the html folder
+5. now you can go into your "News Config" and choose your options!
+6. if is it all fine, then delete the newsinstall.php
+
+

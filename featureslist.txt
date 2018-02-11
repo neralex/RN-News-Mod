@@ -1,0 +1,63 @@
+/**
+ * @PHP-NUKE: Web Portal System
+ * @package Tricked Out News
+ * @version 2.6 (RN News-Mod)
+ * @file: featureslist.txt
+ * @copyright (c) 2002 by Francisco Burzi
+ * @Additional security & Abstraction layer conversion 2003 chatserv http://www.nukeresources.com
+ * @nukeWYSIWYG Copyright (c) 2005 Kevin Guske http://nukeseo.com
+ * @kses developed by Ulf Harnhammar http://kses.sf.net
+ * @RavenNuke(tm) Support:
+ * 2012 - Nuken http://www.trickedoutnews.com
+ * 2013 - rework of all functions by neralex http://www.media.soefm.de
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
+
+Features-List:
+
+- new time sorting feature (you can set a new timestamp, you can choose between decending and acending)
+- manage the max- and min-years of all posted articles
+- new autonews function
+- new expiration function
+- new submit approve function
+- new news-archive
+- story-locker to block articles without the status active for all user. only admin can use the articles
+- css implementation for all themes in the RavenNuke package with $modCssFile
+- new listing of associated topics
+- little jQuery functions for news and submit news to show timing-fields and listing of topics and submit-users
+- rework of newsedit function with inline colorboxes and docs as language variables
+- all other block- or module-files with functions of the News module was reworked to the new sorting
+- save status in function editStory (done, approoved, failed, time error)
+- nukeWYSIWYG 3.6.3.1 integration
+- included nukeWYSIWYG 3.6.3 last theme, language and width/height fixes
+- added control columns and pagination into the catagories index
+- remove table from news index an replaced with a non-floated div solution created by css classes
+- if the option columns display is active and its shows only one id in news or catagories
+- added variable $fullwidth into index and catagories to control the displaying of the first container in full width
+- change css-implementation in news index, catagories and article area
+- remove double jquery loadings in news index and arcticle area
+- control the colorbox box call with the ton-query
+- fixed text-decorations in top and bottoum links (placed in news.css)
+- remove tables from article area and replaced with non-floated divs created by css classes
+- put a news.css version in all themes in the RN package
+- added some check variables into print.php and printpdf.php for empty ids
+- remove tables from print.php and replaced with div an css-styles
+- remove function getTopics from news index, catagories and article area and added into the querys.
+- try to fix the filtering into the articlebox.php (ajax/colorbox specialchar issue with different charsets)
+- try to add new filtering types in all files of the news and topics module (utf-8 support)
+- added updated social-icons for social-sprites
+- socialsharing links open now in a popup not more in a new window or tab
+- remove radminsuper variable from admin functions
+- feadcreator uft-8 issue quick&dirty fixed
+- kses allowed protocols fix
+- added jQuery charcounter for ckeditor
+- after creating a new article you jump now directly in the archive with a topic selection, when a topic was selected
+- change the status of articles inside the news archive, if the status on active or inactive without a expire-time
+- added char counter options inside the newsconfig for the names of the topics and articles in the archive
+- Submit News are based now on the functions for creating a new article with all known features and constants
+- "komma vs. period" issue fixed for all echo strings
+- added basic msqli syntax to all sql statements
+- splitted admin files
+- activate admin-notes setting
+- patched for RN251
+- rating-artviews optimized (article.php)

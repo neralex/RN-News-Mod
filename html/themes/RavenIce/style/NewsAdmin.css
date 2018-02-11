@@ -1,0 +1,140 @@
+.newssort {float:left; margin-top:15px; margin-bottom:15px; margin-right:20px;}
+.newssort .newssortfiller {margin-left:4px; margin-right:4px; font-weight:bold;}
+.newssort select {padding:2px;}
+.newssort option {padding-right:8px;}
+.newssort select::-moz-focus-inner, .topicmain select::-moz-focus-inner {border:0px;}
+.newssort select:focus, .topicmain select:focus {outline:none;}
+.newssort input[type=radio] {cursor:pointer;}
+.topicmain {float:left; margin-bottom:15px; margin-top:15px;}
+.topicmain select {padding:2px;}
+.newscounter {clear:both; margin-top:10px; margin-bottom:20px;}
+.newscounter input[type=text]::-moz-focus-inner {border:0px;}
+.newscounter input[type=text]:focus {outline:none;}
+.themepreview {margin-left:8%; margin-right:8%; display:inline-block; width:80%; padding:8px; margin-bottom:20px; border:1px solid;}
+.themepreviewpic {margin-left:10px; margin-bottom:10px;}
+.tonpressme {display:inline-block; padding:5px 15px 5px 15px; outline:none; border:1px solid #000; width:auto; margin:0 5px 15px 0; font-weight:bold;}
+.tonpressme:hover {text-decoration:none;}
+.storylock {display:inline-block; margin-right:15px;}
+.assolistDIV {margin-top:10px;}
+.assolist {border:1px solid #000; width:260px; height:150px; overflow:auto; resize:both/*vertical*/;}
+.assolist label, .assolist span {display:block; padding-left:4px; padding-top:5px; padding-bottom:5px; cursor:pointer;}
+.assolist label:hover, .assolist label.hover {color:#fff; background:rgb(0, 0, 0); background:rgba(0, 0, 0, 0.4); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000); -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000)";}
+.assolist label::selection, .assolist label.hover::selection {background:none;}
+.assolist label::-moz-selection, .assolist label.hover::-moz-selection {background:none;}
+.assolist label input[type=checkbox] {margin-right:5px; vertical-align:middle;}
+* html .assolist label {height:1%;}
+.assolistcheck {margin-left:5px; margin-right:5px;}
+/* news archive */
+.archivenavi {margin-top:10px; margin-bottom:10px;}
+.archivenavi a {display:inline-block; width:30px; padding:2px; margin:2px; border:1px solid; text-align:center; color:#000; outline:none;}
+.archivenavi a:hover {color:#000; text-decoration:none; background:none;}
+.archivenavi a:active {background:none;}
+.archivenavi a.borderactive {border-color:#8895b5 !important;}
+.archivelist {border-top:1px solid; border-bottom:1px solid; font-size:100%;}
+.archivelist tr:first-child td, .archivelist tr:last-child td {padding:4px;}
+.archivelist td:first-child {border-left:1px solid;}
+.archivelist td {border-right:1px solid; padding:2px 0 2px 0;}
+.archivelist tr:first-child td {border-bottom:1px solid;}
+.archivelist tr:last-child td {border-top:1px solid;}
+.archivetitle {width:60%;}
+.archivehover:hover {background:#aff4e5;}
+.archivehover:hover a {color:#000;}
+.archivehover a:hover {color:#000;}
+.archivehover div.tooltip {padding:4px 4px 4px 4px; position:relative; text-decoration:none; white-space:nowrap;}
+.archivehover div.tooltip:hover {z-index:1;}
+.archivehover div.tooltip div {display:none;}
+.archivehover div.tooltip:hover div {display:block; background:#aff4e5; position:absolute; top:1.6em; right:0%; width:auto; padding:2px 6px 6px; text-align:right; -o-border-radius:0px 0px 4px 4px; -icab-border-radius:0px 0px 4px 4px; -khtml-border-radius:0px 0px 4px 4px; -moz-border-radius:0px 0px 4px 4px; -webkit-border-bottom-right-radius:4px; -webkit-border-bottom-left-radius:4px; border-radius:0px 0px 4px 4px;}
+.archivehover div.tooltip:hover div p {margin:0; padding:0;}
+.archivehover div.tooltip:hover div a {display:inline-block; padding:2px 4px; border:1px solid #8895b5; margin:2px 0px 2px 4px; background:#fff; color:#000;}
+.archivehover div.tooltip:hover div a:hover {text-decoration:none; background:#000; color:#fff;}
+.archivehover div.tooltip:hover div a:active {text-decoration:none; background:darkred; color:#fff;}
+.archivepager {margin-top:20px;}
+.archivepager span {text-align:center; padding:1px 5px 1px 5px; background:#d3d6ff; border:1px solid #8895b5;}
+.archivepager a {text-align:center; padding:1px 5px 1px 5px; border:1px solid; outline:none;}
+.archivepager a:hover {color:#000; text-decoration:none;}
+.archivepager a:active {color:#000; background:none;}
+.archiveswitch a {display:inline-block; padding:6px; margin:4px; cursor:pointer; border:1px solid;}
+.archiveswitch a:hover {text-decoration:none;}
+.archiveswitch a:active {background:none;}
+.archiveswitch a.switchshadow {box-shadow:0px 0px 5px #c4c7eb; -moz-box-shadow:0px 0px 5px #c4c7eb; -webkit-box-shadow:0px 0px 5px #c4c7eb; outline:none;}
+.archiveswitch a.switchshadowactive {box-shadow:0px 0px 5px #8895b5; -moz-box-shadow:0px 0px 5px #8895b5; -webkit-box-shadow:0px 2px 5px #8895b5; outline:none;}
+.archiveselect {margin-top:10px; margin-bottom:10px;}
+.archiveselect select {padding:2px; border:1px solid;}
+.archiveselect select::-moz-focus-inner {border:0px;}
+.archiveselect select:focus {outline:none;}
+.archiveselect input[type=submit] {padding:2px; cursor:pointer;}
+/* ck counter */
+.ckred {color:#900;}
+#ckcounter {font-weight:bold; margin-bottom:5px;}
+#ckcount {float:right; margin-right:8px; font-weight:bold;}
+.ckbar {width:0px; height:16px;}
+.ckbluebar {background:#2098e4;}
+.ckbluebar.gradient {background:-moz-linear-gradient(center top, #2098e4, #105cbe); background:-webkit-gradient(linear, left top, left bottom, from(#2098e4), to(#105cbe));}
+.ckredbar {background:#cc0000;}
+.ckredbar.gradient {background:-moz-linear-gradient(center top, #cc0000, #900); background:-webkit-gradient(linear, left top, left bottom, from(#cc0000), to(#900));}
+.ckbarcount {height:16px; width:150px; overflow:hidden; border:solid 1px; float:right;}
+.ckbarcount.radius {-webkit-border-radius:0.3em; -moz-border-radius:0.3em; border-radius:0.3em;}
+.ckbarmover {margin-right:0px;}
+/* global border-color */
+.archivenavi a, .archivelist, .archivelist td:first-child, .archivelist tr:first-child td, .archivelist tr:last-child td, .archivelist td, .archivepager a, .archiveswitch a, .archiveselect select, .archiveselect input[type=submit], .ckbarcount {border-color:#c4c7eb;}
+/* global background-color */
+.archivenavi a, .archivelist tr:first-child, .archivelist tr:last-child, .archivepager a:hover {background:#C6D4E5;}
+/* global inset box-shadow */
+.archivenavi a:active, .archivepager a:active, .archiveswitch a:active, .archiveselect input[type=submit]:active {-moz-box-shadow:inset 0 0 5px #C6D4E5; -webkit-box-shadow:inset 0 0 5px #C6D4E5; box-shadow:inset 0 0 5px #C6D4E5;}
+.toncboxinline {padding:10px; color:#000;}
+/*  multiselect filter styles */
+.ui-multiselect-hasfilter ul {position:relative; top:2px;}
+.ui-multiselect-filter {float:left; font-size:11px;}
+.ui-multiselect-filter input {width:178px; font-size:10px; margin-left:1px; height:15px; padding:1px; border:1px solid #292929; -webkit-appearance:textfield; -webkit-box-sizing:content-box;}
+.ui-multiselect-filter input, .ui-multiselect-filter input::-moz-focus-inner {border:0px;}
+/* multiselect styles */
+.ui-multiselect {padding:2px 0 0px 4px; text-align:left;}
+.ui-multiselect span.ui-icon {float:right;}
+.ui-multiselect-single .ui-multiselect-checkboxes input {position:absolute; top:auto; left:-9999px;}
+.ui-multiselect-single .ui-multiselect-checkboxes label {padding-left:5px; font-weight:normal;}
+.ui-multiselect-header {margin-bottom:3px; padding:3px 0 3px 4px; background:#a1c8c7 !important;}
+.ui-multiselect-header ul {font-size:11px;}
+.ui-multiselect-header ul li {float:left; padding:0 10px 0 0;}
+.ui-multiselect-header a {text-decoration:none;}
+.ui-multiselect-header a:hover {text-decoration:underline;}
+.ui-multiselect-header span.ui-icon {float:left;}
+.ui-multiselect-header li.ui-multiselect-close {float:right; text-align:right; padding-right:0;}
+.ui-multiselect-menu {display:none; padding:3px; position:absolute; z-index:10000}
+.ui-multiselect-checkboxes {position:relative /* fixes bug in IE6/7 */; overflow-y:scroll}
+.ui-multiselect-checkboxes label {cursor:default; display:block; border:1px solid transparent; padding:3px 1px;  font-weight:normal;}
+.ui-multiselect-checkboxes label input {position:relative; top:1px;}
+.ui-multiselect-checkboxes li {clear:both; font-size:11px; padding-right:3px;}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label {text-align:center; border-bottom:1px solid;}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a {display:block; padding:3px; margin:1px 0; text-decoration:none;}
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label {border:none;}
+/* multiselect Layout helpers
+----------------------------------*/
+.ui-helper-hidden {display:none;}
+.ui-helper-hidden-accessible {position:absolute; clip:rect(1px 1px 1px 1px); clip:rect(1px,1px,1px,1px);}
+.ui-helper-reset {margin:0; padding:0; border:0; outline:0; line-height:1.3; text-decoration:none; font-size:100%; list-style:none;}
+.ui-helper-clearfix:after {content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.ui-helper-clearfix {display:inline-block;}
+/* multiselect required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix {height:1%;}
+.ui-helper-clearfix {display:block;}
+/* end clearfix */
+.ui-helper-zfix {width:100%; height:100%; top:0; left:0; position:absolute; opacity:0; filter:Alpha(Opacity=0);}
+/* multiselect Component containers
+----------------------------------*/
+.ui-widget {color:#000;}
+.ui-widget .ui-widget {}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {/*font-size:11px;*/}
+.ui-widget-content {border:1px solid #d2d2d3; background:#dbdbdb; color:#000;}
+.ui-widget-content a {color:#000;}
+.ui-widget-header {border:1px solid #d2d2d3; background:#dbdbdb; color:#ffffff; font-weight:bold;}
+.ui-widget-header a {color:#ffffff;}
+/* multiselect Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:1px solid #d2d2d3; background:#dbdbdb;}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {color:#000; text-decoration:none;}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {border:1px solid #d2d2d3; background:#eeeeee; color:#000;}
+.ui-state-hover a, .ui-state-hover a:hover {color:#000; text-decoration:none;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border:1px solid #d2d2d3; background:#ffffff; color:#000}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {color:#000; text-decoration:none;}
+.ui-widget :active {outline:none;}

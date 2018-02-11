@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Lang" content="en">
+	<title>nukeWYSIWYG</title>
+	<link rel="stylesheet" type="text/css" href="documentation/css/style.css" />
+</head>
+<body>
+	<div id="page-wrap">
+		<div id="nav-bar">
+			<ul id="main-nav">
+				<li class="index"><a href="readme.html#overview">Overview</a>
+				<li class="usage"><a href="readme.html#install">Installation</a></li>
+				<li class="usage"><a href="readme.html#use">Use</a></li>
+				<li class="demo1"><a href="readme.html#support">Support</a></li>
+				<li class="parameters"><a href="readme.html#credits">Credits</a></li>
+				<li class="changelog"><a href="readme.html#changelog">Changelog</a></li>
+			</ul>
+			<div class="support">
+				<h4>Support</h4>
+				<ul>
+					<li>www.ravenphpscripts.com</li>
+					<li>Post in our user <a href="http://www.ravenphpscripts.com/forums.html" >forums</a></li>
+				</ul>
+			</div>
+		</div>
+		<h1><a href="http://nukeseo.com">nukeWYSIWYG <span>v3.6.3</span></a></h1>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="overview">Overview</h2>
+				<h4>Description</h4>
+				<p>nukeWYSIWYG&trade; 3.6.3, featuring CKEditor and elFinder integration by Matthew Schmidt, provides a flexible, integrated "what-you-see-is-what-you-get" HTML editor for RavenNuke&trade; without sacrificing security.  nukeWYSIWYG&trade; has designed to support multiple HTML editors, but is only packaged with CKEditor 3.6.3.  CKEditor's predecessor, FCKeditor, was selected after careful evaluation and comparison of multiple HTML editors.</p>
+				<h4>Features</h4>
+				<ul>
+					<li>On / off switch which can be used at the site or module level</li>
+					<li>Automatically disabled when accessed by crawlers to save bandwidth</li>
+					<li>The latest version of CKEditor (3.6.3)  See http://ckeditor.com/what-is-ckeditor</li>
+					<li>Multiple toolbar configurations for functionality, performance, & security</li>
+					<li>Designed so that settings can be changed on the fly</li>
+					<li>elFinder 2.0 integration for file management and uploads (http://elrte.org/elfinder)</li>
+				</ul>
+			</div>
+		</div>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="install">Installation</h2>
+				<p class="callout">This installment of nukeWYSIWYG is only for RavenNuke&trade; version 2.5+.  It can probably be modified for use on other systems, but they are not supported.</p>
+				<p>The following applies to both new installations and upgrades.  Instead of requiring you to manually modify core RavenNuke files we have provided pre-modifed files within this package.  The files are as follows:</p>
+				<ul>
+					<li>/mainfile.php</li>
+					<li>/classes/class.legal_doctypes.php</li>
+					<li>/includes/nukesentinel.php</li>
+					<li>/includes/tegonuke/mailer/mailer.php</li>
+					<li>/modules/Groups/includes/nsngr_func.php</li>
+					<li>/modules/Your_Account/includes/mainfileend.php</li>
+				</ul><br />
+				<p>If you think you may have modifed any of these files previously for any other modfications you will have to run a file comparision to determine the changes required.</p>
+				<p>1. Upload the contents of the html folder to the root of your site.</p>
+				<p>2. You are required to manually edit config.php.  Since this file contains your database information we can not provide a pre-edited file.  Please find the following code snippet at the bottom of your config.php file and replace it with next snippet:</p>
+				<pre><code>if (defined('INCLUDE_PATH') &amp;&amp; file_exists(INCLUDE_PATH . 'rnconfig.php')) {
+	require_once INCLUDE_PATH . 'rnconfig.php';
+} else {
+	echo &lt;&lt;&lt; ERROR
+		&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+	&lt;head&gt;
+		&lt;title&gt;Unable To Locate RN CONFIG file!&lt;/title&gt;
+	&lt;/head&lg;
+	&lt;body&gt;
+		Unable to locate the RavenNuke&trade; configuration file - rnconfig.php&lt;br /&gt;
+		&lt;br /&gt;
+
+		It could be missing or not readable. Please verify that the file exists and is readable in the root folder.&lt;br /&gt;
+		&lt;br /&gt;
+		This may also be caused by a third party module/script which attempts to include config.php directly rather than including mainfile.php and letting it load config.php, or otherwise does not follow RavenNuke(tm) standards on how the constant INCLUDE_PATH is defined (this is done in mainfile.php, and is dependent upon other constants).
+	&lt;/body&gt;
+&lt;/html&gt;
+ERROR;
+}</code></pre>
+				<pre><code>require_once dirname(__FILE__) . '/rnconfig.php';</code></pre>
+				<p>3. For Linux / Apache users:  In order to upload images and other files on administrative functions, the permissions for uploads/file, uploads/flash, uploads/image and uploads/media folders must either be set to 777, or the Apache user must own these folders.</p>
+				<p>4. (Optional) Remove the folder includes/fckeditor and all subfolders (this is the old FCKeditor).</p>
+			</div>
+		</div>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="use">Use</h2>
+				<h4>Disable Editor</h4>
+				<p>To disable the editor, simply set $advanced_editor = 0; in config.php</p>
+				<h4>Toolbars</h4>
+				<p>The package comes preconfigured with 3 different toolbars.  If you wish you can define your own via includes/ckeditor/config.js.  The three toolbars are named PHPNukeAdmin, NukeUser, and PHPNuke.  PHPNuke is a copy of the Basic toolbar set defined by CKeditor, PHPNukeAdmin is a copy of the Full toolbar set, and NukeUser is something in-between for the more trusted users.</p>
+				<h4>Use</h4>
+<p>It is very easy to implement the editor in a new or existing module.</p>
+<pre>/**
+* Generate WYSISYG Editor
+*
+* This will echo out the editor.
+*
+* @param sting $name name attribute of textarea
+* @param string $value value of textarea
+* @param string $toolbar toolbar to use in editor
+* @param int $width width of textarea
+* @param int $height height of textarea
+*
+* @return string
+*/
+function wysiwyg_textarea($name, $value, $toolbar = 'NukeUser', $width = '100%', $height = '300px')</pre>
+<p>For the standard "display-as-you-go" approach, replace textarea HTML tags in modules and admin scripts with a PHP call to function wysiwyg_textarea with 5 arguments: textarea name, textarea value, the toolbar set name, textarea width (pixels or percent), and textarea height (pixels or percent).  For example:
+<pre>echo &quot;&lt;br&gt;&lt;br&gt;&quot;
+        .&quot;&lt;b&gt;&quot;._STORYTEXT.&quot;:&lt;/b&gt; (&quot;._HTMLISFINE.&quot;)&lt;br&gt;
+        .&quot;&lt;textarea cols=\&quot;50\&quot; rows=\&quot;12\&quot; name=\&quot;story\&quot;&gt;&lt;/textarea&gt;&lt;br&gt;&quot;;</pre>
+<p>becomes:</p>
+<pre>echo &quot;&lt;br&gt;&lt;br&gt;&quot;
+        .&quot;&lt;b&gt;&quot;._STORYTEXT.&quot;:&lt;/b&gt; (&quot;._HTMLISFINE.&quot;)&lt;br&gt;&quot;;
+	wysiwyg_textarea(&quot;story&quot;, &quot;&quot;, &quot;NukeUser&quot;, &quot;50&quot;, &quot;12&quot;);</pre>
+<p>If there is a value between the &lt;textarea&gt; and &lt;/textarea&gt;, tags, that should be specified as the second argument in the wysiwyg_textarea function call.</p>
+<p>The 3rd argument defines the toolbar set, which controls which functions are available to the user.  Since these functions can present security risks, this should be chosen carefully.  By default, the most limited toolset bar will be chosen.  In admin functions, you may choose to use PHPNukeAdmin which loads all CKeditor functions.  The NukeUser toolbar set is more limited, more secure and loads faster.</p>
+<p>The textarea columns and rows are used in the event the WYSIWYG editor is turned off.  Rows are used to control the height of the text editor when the WYSIWYG editor is on.</p>
+<p>For a template / "build, then display" approach, replace the textarea HTML with a similar PHP function call, wysiwyg_textarea_html.  For example:</p>
+<pre>$out .= '&lt;center&gt;&lt;p align=&quot;center&quot;&gt;&lt;form action=&quot;'.$baseurl.'&quot; method=&quot;POST&quot;&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;do&quot; value=&quot;Post&quot;&gt;'
+  . '&lt;font class=&quot;'.$font['title'].'&quot;&gt;'._GALNAME.'&lt;/font&gt;&amp;nbsp;&lt;b&gt;'.$userdata[1].'&lt;/b&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;gname&quot; value=&quot;'.$userdata[1].'&quot;&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;member&quot; value=&quot;1&quot;&gt;&lt;br&gt;'
+  . '&lt;font class=&quot;'.$font['title'].'&quot;&gt;'._GALCOMMENT.'&lt;/font&gt;&lt;br&gt;'
+  . '&lt;textarea wrap=&quot;virtual&quot; cols=&quot;40&quot; rows=&quot;8&quot; name=&quot;comment&quot; type=&quot;text&quot; maxlength=&quot;70&quot;&gt;&lt;/textarea&gt;&lt;br&gt;'
+  . '&lt;input class=&quot;textbox&quot; type=&quot;hidden&quot; name=&quot;pid&quot; value=&quot;'.$pid.'&quot;&gt;&amp;nbsp;'
+  . '&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;'
+  . '&lt;/form&gt;'
+  . '&lt;font class=&quot;option&quot;&gt;'._GALNOTE.'&lt;/font&gt;&lt;/p&gt;&lt;/center&gt;';</pre>
+<p>becomes:</p>
+<pre>$out .= '&lt;center&gt;&lt;p align=&quot;center&quot;&gt;&lt;form action=&quot;'.$baseurl.'&quot; method=&quot;POST&quot;&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;do&quot; value=&quot;Post&quot;&gt;'
+  . '&lt;font class=&quot;'.$font['title'].'&quot;&gt;'._GALNAME.'&lt;/font&gt;&amp;nbsp;&lt;b&gt;'.$userdata[1].'&lt;/b&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;gname&quot; value=&quot;'.$userdata[1].'&quot;&gt;'
+  . '&lt;input type=&quot;hidden&quot; name=&quot;member&quot; value=&quot;1&quot;&gt;&lt;br&gt;'
+  . '&lt;font class=&quot;'.$font['title'].'&quot;&gt;'._GALCOMMENT.'&lt;/font&gt;&lt;br&gt;';
+  . wysiwyg_textarea_html(&quot;comment&quot;, &quot;&quot;, &quot;NukeUser&quot;, &quot;40&quot;, &quot;8&quot;);
+  . '&lt;input class=&quot;textbox&quot; type=&quot;hidden&quot; name=&quot;pid&quot; value=&quot;'.$pid.'&quot;&gt;&amp;nbsp;'
+  . '&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;'
+  . '&lt;/form&gt;'
+ . '&lt;font class=&quot;option&quot;&gt;'._GALNOTE.'&lt;/font&gt;&lt;/p&gt;&lt;/center&gt;';</pre>
+<h4>elFinder</h4>
+<p>nukeWYSIWYG comes packaged with elFinder 2.0.  Elfinder is used to browse, upload, and other wise manage files.  By default we have configured CKEditor to the the following urls to browse and upload files.</p>
+<pre>$editor->setBrowser('includes/elfinder/elfinder.php');
+$editor->setUploader('includes/elfinder/php/modules/ckeditor.php');</pre>
+<p>If you are developing a module and want to control what directories/files can be browsed, or what file types can be uploaded beyond the stock setting this is what you need to change. You need to create a copy of includes/elfinder/php/modules/ckeditor.php and name it appropriately.  For example, for module "mymodule," you would use a URL ending with:</p>
+<pre>includes/elfinder/php/modules/ckeditor.php?module=mymodule</pre>
+<p>When using this URL, elFinder will use the custom settings in mymodule.php.</p>
+<p>Note: these scripts can be used independently of CKEditor. You should also be able to use the quick upload feature in a module without CKEditor. Please note that by default only admins can use the upload capability.</p>
+			</div>
+		</div>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="support">Support</h2>
+				<p>Please read this carefully - nukeWYSIWYG&trade; requires code modifications!  If you have problems, please post in the forums at http://nukeSEO.com.  If you are new to PHP programming, try RavenNuke(tm)) - it includes nukeWYSIWYG (tm) and many other fine enhancements:  http://ravenphpscripts.com.</p>
+				<p>If you wish to donate money to support future development of nukeWYSIWYG&trade;, please visit: http://nukeSEO.com, http://elrte.org/elfinder, or http://ckeditor.com/ where donations are gladly accepted and appreciated.</p>
+				<p>Special appreciation is given to Montego (http://montegoscripts.com), Guardian (http://www.code-authors.com), Nuken (http://www.trickedoutnews.com), and Spasticdonkey for support, suggestions, and testing.</p>
+			</div>
+		</div>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="credits">Credits</h2>
+				<h4>Current Version</h4>
+				<p>Matthew "Palbin" Schmidt - http://www.ravennuke.com</p>
+				<p>nukeWYSIWYG&trade; by Kevin Guske - http://nukeseo.com</p>
+				<p>CKeditor by Frederico Caldeira Knabben - http://www.ckeditor.com</p>
+				<p>elFinder - http://elrte.org/elfinder</p>
+				<br /><h4>Previous Versions</h4>
+				<p>nukeWYSIWYG&trade; by Kevin Guske - http://nukeseo.com</p>
+				<p>kses developed by Ulf Harnhammar - http://kses.sf.net</p>
+				<p>kses ideas contributed by sixonetonoffun - http://netflake.com</p>
+				<p>CKeditor by Frederico Caldeira Knabben - http://ckeditor.com</p>
+				<p>Original FCKeditor for PHP-Nuke by H.Theisen - http://phpnuker.de</p>
+				<p>$allowable_html img tag update by Nopsych - http://www.nopsych.it</p>
+			</div>
+		</div>
+		<div id="main-content">
+			<div id="inside-content">
+				<h2 id="changelog">Changelog</h2>
+			</div>
+		</div>
+		<div id="footer">
+			<p id="copyright">nukeWYSIWYG&trade; Copyright &copy; 2005-2012, Kevin Guske - http://nukeseo.com</p>
+			<p>This program is free software. You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License.</p>
+		</div>
+	</div>
+</body>
+</html>
