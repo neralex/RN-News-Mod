@@ -700,7 +700,7 @@ function install($newssort, $newsorder, $newsyearmin, $newsyearmax, $hideautotim
 	} else {
 		echo 'Submit News - non-existent or not moved ', $exclamation, '<br />', PHP_EOL;
 	}
-	if ($newssortquery  && $newsorderquery  && $newsyearminquery  && $newsyearmaxquery  && $hideautotimesquery  && $previewstoryquery && $hideautosubmitquery && $archivedefaultquery  && $archivetopicsquery  && $jqueryselectquery && $archivelimitquery && $counttopicquery && $counttitlequery && $usenotesquery && $slockquery  && $time2query  && $time3query  && $slockquery && $anmoveres && $qumoveres) {	
+	if ($newssortquery  && $newsorderquery && $newsyearminquery && $newsyearmaxquery && $hideautotimesquery && $previewstoryquery && $hideautosubmitquery && $archivedefaultquery  && $archivetopicsquery && $jqueryselectquery && $archivelimitquery && $counttopicquery && $counttitlequery && $usenotesquery && $slockquery && $time2query && $time3query && $slockquery && $anmoveres && $qumoveres) {
 		echo '<p><strong>done</strong>!</p>', PHP_EOL
 			,'<p>', PHP_EOL
 			,'You have installed the new database fields and/or moved old autonews and submit news,<br />', PHP_EOL
