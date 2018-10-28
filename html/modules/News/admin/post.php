@@ -18,7 +18,13 @@ if (!defined('MODULE_FILE') && !defined('ADMIN_FILE')) {die('You can\'t access t
 if (!defined('PHP_EOL')) define ('PHP_EOL', strtoupper(substr(PHP_OS,0,3) == 'WIN') ? "\r\n" : "\n");
 
 function adminStory() {
-	global $prefix, $db, $language, $multilingual, $admin_file, $bgcolor1, $bgcolor2, $ThemeSel, $advanced_editor, $module_name, $AllowableHTML, $user, $anonymous;
+	global $prefix, $db, $language, $multilingual, $admin_file, $bgcolor1, $bgcolor2, $ThemeSel, $advanced_editor, $module_name, $AllowableHTML, $user, $anonymous, $anonpost;
+
+	if (!defined('ADMIN_FILE') && $anonpost == 0 && !is_user($user)) {
+		header('Location: index.php');
+		exit;
+	}
+
 	$tonquery = $db->sql_query('SELECT `newsyearmin`, `newsyearmax`, `hideautotimes`, `hideautosubmit`, `jqueryselect`, `TON_useCharLimit`, `TON_CharLimit` FROM `' . $prefix . '_ton`');
 	list($newsyearmin, $newsyearmax, $hideautotimes, $hideautosubmit, $jqueryselect, $TON_useCharLimit, $TON_CharLimit) = $db->sql_fetchrow($tonquery);
 	if ($jqueryselect == 1 && !file_exists('themes/' . $ThemeSel . '/style/NewsAdmin.css')) {
